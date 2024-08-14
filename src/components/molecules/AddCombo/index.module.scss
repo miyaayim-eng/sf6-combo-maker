@@ -1,0 +1,17 @@
+@use "@global" as *;
+
+.container {
+  display: flex;
+  gap: 16px;
+}
+
+.select {
+  padding: 4px;
+  border: 1px solid blue;
+  cursor: pointer;
+}
+
+.button {
+  padding: 4px;
+  border: 1px solid green;
+}

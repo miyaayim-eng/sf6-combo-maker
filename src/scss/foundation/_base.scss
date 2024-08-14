@@ -1,0 +1,62 @@
+@charset "UTF-8";
+@use "@global" as *;
+
+:root {
+  //* -------------------------------------------------------
+  //* 色
+  //* -------------------------------------------------------
+  --color-white: 255, 255, 255;
+  --color-black: 0, 0, 0;
+
+  //* -------------------------------------------------------
+  //* フォント
+  //* -------------------------------------------------------
+
+  //* -------------------------------------------------------
+  //* レイアウト
+  //* -------------------------------------------------------
+  --vw: calc(100vw - var(--scrollbarWidth));
+  --header-height: 104px;
+  // --body-paddingSide-variable: 5%;
+  --body-paddingSide-constant: 120px;
+  --body-paddingSide: var(--body-paddingSide-constant);
+  --contents-width-sm: 960px;
+  --contents-width-md: 1200px;
+  --contents-width-lg: 1360px;
+  @include mq(lg) {
+    --body-paddingSide-constant: 80px;
+  }
+  @include mq(md) {
+    --header-height: 80px;
+    --body-paddingSide-constant: 40px;
+  }
+
+  //* -------------------------------------------------------
+  //* アニメーション
+  //* -------------------------------------------------------
+  --transition: 0.3s ease;
+}
+
+html {
+  overflow-y: scroll;
+  // scroll-behavior: smooth;
+}
+
+body {
+  position: relative;
+  // @include font-ja;
+  line-height: 1.75;
+  letter-spacing: 0.05em;
+  // color: rgb(var(--color-black));
+  min-height: 100dvh;
+}
+
+// body.is-fixed {
+//   position: fixed;
+//   left: 0;
+//   width: 100%;
+// }
+
+// [id] {
+//   scroll-margin-top: calc(--header-height + 40px);
+// }

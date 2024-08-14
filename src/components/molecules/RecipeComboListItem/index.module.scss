@@ -1,0 +1,39 @@
+@use "@global" as *;
+
+.item {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 4px;
+
+  & + & {
+    &:before {
+      content: "→";
+      padding: 0 4px;
+    }
+  }
+}
+
+.inner {
+  border: 1px solid #000;
+  padding: 4px 8px;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+}
+.command {
+  display: flex;
+  justify-content: center;
+  // gap: 4px;
+}
+.input {
+  &:empty {
+    display: none;
+  }
+  &.plus {
+    margin-inline: 4px;
+  }
+}

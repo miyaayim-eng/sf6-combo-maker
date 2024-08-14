@@ -1,0 +1,31 @@
+@use "@global" as *;
+
+.inner {
+  @include content-inner(lg);
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.siteTitle {
+  font-size: to-rem(54);
+  font-weight: 700;
+  font-family: var(--font-en);
+  text-align: center;
+}
+
+.siteDesc {
+  width: fit-content;
+  margin-inline: auto;
+  margin-top: 40px;
+}
+
+.sectionTitle {
+  text-align: center;
+  margin-top: 80px;
+}
+.sectionTitleJa {
+  font-size: to-rem(24);
+}
+.sectionTitleEn {
+  font-size: to-rem(32);
+}

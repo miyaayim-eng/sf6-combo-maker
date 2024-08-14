@@ -17,9 +17,14 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "@scss/*": ["./src/scss/*"],
+      "@global": ["./src/scss/global/_index.scss"]
     }
+    // "jsx": "react",
+    // "tsx": "react"
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]

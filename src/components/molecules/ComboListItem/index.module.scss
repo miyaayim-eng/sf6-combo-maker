@@ -1,0 +1,23 @@
+@use "@global" as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px;
+  border: 1px solid black;
+}
+
+.button {
+  padding: 4px;
+  border: 1px solid green;
+}
+
+.orderBox {
+  display: flex;
+  gap: 4px;
+}
+.orderButton {
+  padding: 4px;
+  border: 1px solid orange;
+}

@@ -1,0 +1,27 @@
+@use "@global" as *;
+
+.inner {
+  @include content-inner(l);
+
+  // &--s {
+  //   @include content-inner(s);
+  // }
+}
+
+.ele__center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.txtLink {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+  @include hover {
+    text-decoration: none;
+  }
+}
+
+.inlineBlock {
+  display: inline-block;
+}

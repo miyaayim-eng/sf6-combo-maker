@@ -1,0 +1,37 @@
+@use "@global" as *;
+
+.inner {
+  @include content-inner(lg);
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.pageTitle {
+  padding: 40px 0;
+  background-color: #ccc;
+}
+
+.characterNameJa {
+  font-size: to-rem(24);
+  font-weight: 700;
+  text-align: center;
+}
+.characterNameEn {
+  font-size: to-rem(48);
+  font-weight: 700;
+  text-align: center;
+  font-family: var(--font-en);
+}
+
+.sort {
+  margin-top: 40px;
+}
+.filter {
+  margin-top: 40px;
+}
+.recipeList {
+  margin-top: 40px;
+}
+.pager {
+  margin-top: 40px;
+}
