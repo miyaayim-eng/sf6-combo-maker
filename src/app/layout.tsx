@@ -4,10 +4,11 @@ import { notoSansJP, oswald } from "@/utils/font";
 // 共通のCSS
 import "@scss/foundation/_index.scss";
 
-import { HeaderLayout } from "@/components/templates/HeaderLayout/";
-import { MainLayout } from "@/components/templates/MainLayout/";
-
-import { AppProvider } from "@/components/other/AppProvider";
+import { RecoilProvider } from "@/app/RecoilProvider";
+import { UpdateUser } from "@/components/elements/User/UpdateUser/";
+import { Header } from "@/components/layouts/Header/";
+import { Main } from "@/components/layouts/Main/";
+import { TestComponent } from "./TestComponent";
 
 export const metadata: Metadata = {
   title: "SF6 Combo Maker",
@@ -16,16 +17,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: ReactNode;
-}>) {
+}: Readonly<{ children: ReactNode }>) {
   return (
     <html lang="ja" className={`${notoSansJP.variable} ${oswald.variable}`}>
       <body className={notoSansJP.className}>
-        <AppProvider>
-          <HeaderLayout />
-          <MainLayout>{children}</MainLayout>
-        </AppProvider>
+        <RecoilProvider>
+          <UpdateUser />
+          <Header />
+          <Main>{children}</Main>
+          <TestComponent />
+        </RecoilProvider>
       </body>
     </html>
   );

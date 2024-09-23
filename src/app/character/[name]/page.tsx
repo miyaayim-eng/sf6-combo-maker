@@ -1,39 +1,47 @@
-import Link from "next/link";
-import Image from "next/image";
-
 import styles from "./page.module.scss";
 
 import { getCommonData } from "@/utils/getCommonData";
 import { fetchRecipes } from "@/utils/supabase/fetch";
-
-import { RecipeList } from "@/components/organisms/RecipeList/";
+import { getLoginUser } from "@/utils/getLoginUser";
+import { getFilteredRecipesByField } from "@/utils/getCharacterRecipesByField";
+import { getCharacterData } from "@/utils/getCharacterData";
+import { RecipesContainer } from "@/features/RecipesContainer/";
 
 // このページをSSRにする（これがないと本番環境でこのページはSSGになる。その結果データベースを更新しても反映されなくなる。※supabaseとは関係なく、App Routerのお話）
 export const revalidate = 0;
 
-export default async function Page() {
-  const actionsData = await getCommonData();
+export default async function Page({ params }) {
+  const characterName = params.name;
+
+  const commonData = await getCommonData();
   const recipes = await fetchRecipes();
+  const characterRecipes = getFilteredRecipesByField(
+    recipes,
+    "character_name",
+    characterName
+  );
+  const loginUserData = await getLoginUser();
+  const characterData = getCharacterData(commonData.characters, characterName);
 
   return (
     <>
       <div className={styles.pageTitle}>
-        <h1 className={styles.characterNameJa}>リュウ</h1>
-        <p className={styles.characterNameEn}>RYU</p>
+        <h1 className={styles.characterNameJa}>{characterData.display}</h1>
+        <p className={styles.characterNameEn}>{characterData.display_en}</p>
       </div>
       <div className={styles.inner}>
         <div className={styles.sort}>
           <p>ソートエリア</p>
         </div>
-        <div className={styles.filter}>
-          <p>フィルターエリア</p>
-        </div>
-        <div className={styles.recipeList}>
-          <RecipeList actionsData={actionsData} recipes={recipes} />
-        </div>
-        <div className={styles.pager}>
+        <RecipesContainer
+          commonData={commonData}
+          recipes={characterRecipes}
+          loginUserData={loginUserData}
+          characterName={characterName}
+        />
+        {/* <div className={styles.pager}>
           <p>もっと表示する</p>
-        </div>
+        </div> */}
       </div>
     </>
   );

@@ -1,9 +1,11 @@
 import { getCommonData } from "@/utils/getCommonData";
-import { RecipeForm } from "@/components/organisms/RecipeForm";
+import { FormRecipe } from "@/features/FormRecipe";
 import styles from "./page.module.scss";
+import { getLoginUser } from "@/utils/getLoginUser";
 
 export default async function Page() {
   const commonData = await getCommonData();
+  const loginUserData = await getLoginUser();
 
   return (
     <>
@@ -11,7 +13,7 @@ export default async function Page() {
         <h1 className={styles.pageTitle__title}>レシピ新規作成</h1>
       </div>
       <div className={styles.inner}>
-        <RecipeForm commonData={commonData} />
+        <FormRecipe commonData={commonData} loginUserData={loginUserData} />
       </div>
     </>
   );

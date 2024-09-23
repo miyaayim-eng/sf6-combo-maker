@@ -1,0 +1,17 @@
+@use "@global" as *;
+
+.filterName {
+  font-size: to-rem(18);
+  font-family: 700;
+}
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.label {
+  cursor: pointer;
+}
+.input {
+  cursor: pointer;
+}

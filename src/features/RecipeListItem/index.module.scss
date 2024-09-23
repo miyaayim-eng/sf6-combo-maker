@@ -1,0 +1,10 @@
+@use "@global" as *;
+
+.title {
+  font-size: to-rem(18);
+  font-weight: 700;
+}
+
+.description {
+  font-size: to-rem(14);
+}

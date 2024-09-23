@@ -1,0 +1,13 @@
+@use "@global" as *;
+
+.form {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.label {
+  cursor: pointer;
+}
+.input {
+  cursor: pointer;
+}

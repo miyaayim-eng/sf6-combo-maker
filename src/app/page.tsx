@@ -1,7 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.scss";
 
-import { CharacterList } from "@/components/organisms/CharacterList/";
+import { CharacterList } from "@/features/CharacterList/";
 
 export default function Page() {
   return (
