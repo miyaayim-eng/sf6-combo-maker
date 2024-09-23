@@ -6,11 +6,12 @@ import { getLoginUser } from "@/utils/getLoginUser";
 import { getFilteredRecipesByField } from "@/utils/getCharacterRecipesByField";
 import { getCharacterData } from "@/utils/getCharacterData";
 import { RecipesContainer } from "@/features/RecipesContainer/";
+import { paramsType } from "@/types/paramsType";
 
 // このページをSSRにする（これがないと本番環境でこのページはSSGになる。その結果データベースを更新しても反映されなくなる。※supabaseとは関係なく、App Routerのお話）
 export const revalidate = 0;
 
-export default async function Page({ params }) {
+export default async function Page({ params }: paramsType) {
   const characterName = params.name;
 
   const commonData = await getCommonData();

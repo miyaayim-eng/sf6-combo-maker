@@ -8,11 +8,16 @@ import { RecoilProvider } from "@/app/RecoilProvider";
 import { UpdateUser } from "@/components/elements/User/UpdateUser/";
 import { Header } from "@/components/layouts/Header/";
 import { Main } from "@/components/layouts/Main/";
-import { TestComponent } from "./TestComponent";
 
 export const metadata: Metadata = {
   title: "SF6 Combo Maker",
   description: "",
+  robots: {
+    index: false, // noindexの設定
+    googleBot: {
+      index: false, // Google のクローラーをブロックする場合
+    },
+  },
 };
 
 export default function RootLayout({
@@ -25,7 +30,6 @@ export default function RootLayout({
           <UpdateUser />
           <Header />
           <Main>{children}</Main>
-          <TestComponent />
         </RecoilProvider>
       </body>
     </html>
