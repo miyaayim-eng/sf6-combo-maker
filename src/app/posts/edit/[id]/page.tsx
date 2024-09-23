@@ -3,8 +3,9 @@ import styles from "./page.module.scss";
 
 import { fetchRecipes } from "@/utils/supabase/fetch";
 import { RecipeEditor } from "@/features/RecipeEditor/";
+import { paramsType } from "@/types/paramsType";
 
-export default async function Page({ params }) {
+export default async function Page({ params }: paramsType) {
   const recipeId = params.id;
   const commonData = await getCommonData();
 
