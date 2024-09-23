@@ -51,3 +51,6 @@ export const Header: FC = memo(async () => {
     </header>
   );
 });
+
+// displayName を追加
+Header.displayName = "Header";
