@@ -126,6 +126,7 @@ export const FormRecipe = ({ commonData, recipeId, currentRecipe }) => {
     // console.log("recipeDescription => ", recipeDescription);
 
     return {
+      recipeCharacter,
       recipeUserId,
       recipeTitle,
       recipeDescription,

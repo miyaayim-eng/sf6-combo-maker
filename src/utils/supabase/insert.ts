@@ -14,6 +14,7 @@ export async function insertRecipe(recipe: recipe) {
 
   // データ挿入
   const { error } = await supabase.from("recipes").insert({
+    character_name: recipe.recipeCharacter,
     user_id: recipe.recipeUserId,
     title: recipe.recipeTitle,
     description: recipe.recipeDescription,
@@ -24,7 +25,7 @@ export async function insertRecipe(recipe: recipe) {
     category: recipe.recipeCategory,
     tags: recipe.recipeTags,
     combo: recipe.recipeCombo,
-    password: recipe.recipePassword,
+    // password: recipe.recipePassword,
   });
 
   // エラーが発生した場合

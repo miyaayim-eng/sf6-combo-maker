@@ -1,16 +1,17 @@
-import { useState, useEffect, FC } from "react";
+import { useState, useEffect } from "react";
 import styles from "./index.module.scss";
 
+// import { InputCombo } from "@/features/InputCombo";
 import { ComboList } from "@/features/ComboList";
 import { InputAddCombo } from "@/features/InputAddCombo";
-import { InputComboAreaProps } from "@/types/InputComboAreaType"; // 型をインポート
 
-export const InputComboArea: FC<InputComboAreaProps> = ({
+export const InputComboArea = ({
   setRecipeCombo,
   commonData,
   recipeCharacter,
   recipeCombo,
 }) => {
+  // const [addAction, setAddAction] = useState({});
   const [comboList, setComboList] = useState(recipeCombo);
   const [lastListId, setLastListId] = useState(recipeCombo.length); // 追加していくコンボにIDを付与するためのもの
 
@@ -18,7 +19,7 @@ export const InputComboArea: FC<InputComboAreaProps> = ({
   // console.log("lastListId => ", lastListId);
 
   // コンボ追加時
-  const addCombo = (actionCategory: string, actionId: string) => {
+  const addCombo = (actionCategory, actionId) => {
     // console.log("--- InputAddCombo ---");
     const newListId = lastListId + 1;
     setLastListId(newListId);
@@ -28,21 +29,14 @@ export const InputComboArea: FC<InputComboAreaProps> = ({
       actionCategory,
       actionId,
     };
-
-    setComboList((prevComboList) => [...prevComboList, addAction]);
+    const newComboList = [...comboList, addAction];
+    setComboList(newComboList);
     // console.log("newComboList => ", newComboList);
   };
 
-  // // 削除機能（受け取ったtodo配列から特定のtodoを削除）
-  // const deleteCombo = (comboList, index: number) => {
-  //   // console.log("---deleteCombo---");
-  //   const newComboList = [...comboList];
-  //   newComboList.splice(index, 1);
-  //   return newComboList;
-  // };
-
-  // コンボ削除時の新しいリストを取得
-  const getUpdatedComboList = (index: number) => {
+  // 削除機能（受け取ったtodo配列から特定のtodoを削除）
+  const deleteCombo = (comboList, index: number) => {
+    // console.log("---deleteCombo---");
     const newComboList = [...comboList];
     newComboList.splice(index, 1);
     return newComboList;
@@ -61,14 +55,9 @@ export const InputComboArea: FC<InputComboAreaProps> = ({
   }, [recipeCharacter]);
 
   // コンボ削除時
-  // const onClickDeleteCombo = (index: number) => {
-  //   setComboList(deleteCombo(comboList, index));
-  // };
-
-  // コンボ削除時
   const onClickDeleteCombo = (index: number) => {
     // console.log("--- onClickDeleteCombo ---");
-    setComboList(getUpdatedComboList(index));
+    setComboList(deleteCombo(comboList, index));
   };
 
   useEffect(() => {
