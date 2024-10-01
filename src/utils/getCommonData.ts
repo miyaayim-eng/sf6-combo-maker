@@ -13,22 +13,22 @@ import {
 export const getCommonData = async () => {
   const characters = await fetchCharacters();
   const inputs = await fetchInputs();
-  const commonMoves = await fetchCommonMoves();
-  const normalMoves = await fetchNormalMoves();
-  const uniqueAttacks = await fetchUniqueAttacks();
-  const specialMoves = await fetchSpecialMoves();
-  const superArts = await fetchSuperArts();
+  const common_moves = await fetchCommonMoves();
+  const normal_moves = await fetchNormalMoves();
+  const unique_attacks = await fetchUniqueAttacks();
+  const special_moves = await fetchSpecialMoves();
+  const super_arts = await fetchSuperArts();
   const categories = await fetchCategories();
   const tags = await fetchTags();
 
   return {
     characters,
     inputs,
-    common_moves: commonMoves,
-    normal_moves: normalMoves,
-    unique_attacks: uniqueAttacks,
-    special_moves: specialMoves,
-    super_arts: superArts,
+    common_moves,
+    normal_moves,
+    unique_attacks,
+    special_moves,
+    super_arts,
     categories,
     tags,
   };

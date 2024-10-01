@@ -15,17 +15,17 @@ export const UpdateUser = () => {
       if (!user.bool) {
         // console.log("user.boolがfalseの場合");
 
-        const loginUserData = await getLoginUser();
-        if (loginUserData) {
+        const loginUser = await getLoginUser();
+        if (loginUser) {
           const newUser = {
             bool: true,
-            name: loginUserData.displayName,
-            id: loginUserData.userId,
+            name: loginUser.display_name,
+            id: loginUser.user_id,
           };
           setUser(newUser);
         }
 
-        // console.log("loginUserData => ", loginUserData);
+        // console.log("loginUser => ", loginUser);
         // console.log("user => ", user);
       } else if (user.bool && !user.name && !user.id) {
         // console.log("user.boolがtrueで、user.nameがない場合");

@@ -12,18 +12,17 @@ export async function getLoginUser() {
     const {
       data: { user },
     } = await supabase.auth.getUser();
-    // currentUserにユーザーのメールアドレスを格納
-    // setcurrentUser(user.email);
 
-    // displayNameの取得
-    const displayName = user.user_metadata?.displayName || "";
-    // UIDの取得
-    const userId = user.id;
-    // console.log("user => ", user);
-    // console.log("user.id => ", user.id);
+    // user が null でないかチェック
+    if (user) {
+      // displayNameの取得
+      const display_name: string = user.user_metadata?.displayName || "";
+      // UIDの取得
+      const user_id: string = user.id;
 
-    return { displayName, userId };
-  } else {
-    return;
+      return { display_name, user_id };
+    }
   }
+
+  return null;
 }

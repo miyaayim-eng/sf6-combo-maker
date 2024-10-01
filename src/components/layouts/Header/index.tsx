@@ -1,11 +1,10 @@
-import { memo, FC } from "react";
 import Link from "next/link";
 import styles from "./index.module.scss";
 
 import { fetchCharacters } from "@/utils/supabase/fetch";
 import { UserButton } from "@/components/layouts/Header/UserButton";
 
-export const Header: FC = memo(async () => {
+export const Header = async () => {
   const characters = await fetchCharacters();
 
   return (
@@ -50,7 +49,7 @@ export const Header: FC = memo(async () => {
       </div>
     </header>
   );
-});
+};
 
 // displayName を追加
 Header.displayName = "Header";

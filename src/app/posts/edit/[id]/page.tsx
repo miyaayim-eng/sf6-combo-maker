@@ -1,11 +1,17 @@
 import { getCommonData } from "@/utils/getCommonData";
 import styles from "./page.module.scss";
-
 import { fetchRecipes } from "@/utils/supabase/fetch";
 import { RecipeEditor } from "@/features/RecipeEditor/";
-import { paramsType } from "@/types/paramsType";
 
-export default async function Page({ params }: paramsType) {
+import { CommonType } from "@/types/commonType";
+
+type Params = {
+  params: {
+    id: number;
+  };
+};
+
+export default async function Page({ params }: Params) {
   const recipeId = params.id;
   const commonData = await getCommonData();
 
@@ -17,7 +23,11 @@ export default async function Page({ params }: paramsType) {
     },
   };
 
+  // console.log("queries =>", queries);
+
   const recipes = await fetchRecipes(queries);
+  // console.log("recipes =>", recipes);
+
   // 配列から最初のオブジェクトを取り出す
   const currentRecipe = recipes.length > 0 ? recipes[0] : null;
 
@@ -30,7 +40,7 @@ export default async function Page({ params }: paramsType) {
         <RecipeEditor
           commonData={commonData}
           recipeId={recipeId}
-          currentRecipe={currentRecipe}
+          currentRecipe={currentRecipe as CommonType["recipe"]}
         />
       </div>
     </>

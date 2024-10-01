@@ -1,5 +1,7 @@
 import styles from "./index.module.scss";
 
+import { CommonType } from "@/types/commonType";
+
 import { fetchCharacters } from "@/utils/supabase/fetch";
 import { CharacterListItem } from "@/features/CharacterListItem/";
 
@@ -9,7 +11,7 @@ export const CharacterList = async () => {
   return (
     <nav className={styles.nav}>
       <ul>
-        {characters.map((character) => {
+        {characters.map((character: CommonType["character"]) => {
           return (
             <CharacterListItem key={character.name} character={character} />
           );

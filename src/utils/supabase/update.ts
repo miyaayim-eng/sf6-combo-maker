@@ -3,10 +3,15 @@
 // ---------------------------------------------------------------------
 "use server";
 
+import { CommonType } from "@/types/commonType";
+
 // サーバー側の処理なので、サーバー側のSupabaseクライアントを使用
 import { createClient } from "@/utils/supabase/client";
 
-export async function updateRecipe(recipeId, recipe: recipe) {
+export async function updateRecipe(
+  recipeId: CommonType["recipe"]["id"],
+  recipe: CommonType["recipe"]
+) {
   // Supabaseクライアントを作成
   const supabase = await createClient();
 
@@ -16,21 +21,21 @@ export async function updateRecipe(recipeId, recipe: recipe) {
   const { error } = await supabase
     .from("recipes")
     .update({
-      title: recipe.recipeTitle,
-      description: recipe.recipeDescription,
-      total_damage: recipe.recipeTotalDamage,
-      overdrive: recipe.recipeOverdrive,
-      superarts: recipe.recipeSuperarts,
-      position: recipe.recipePosition,
-      category: recipe.recipeCategory,
-      tags: recipe.recipeTags,
-      combo: recipe.recipeCombo,
+      title: recipe.title,
+      description: recipe.description,
+      total_damage: recipe.total_damage,
+      overdrive: recipe.overdrive,
+      super_arts: recipe.super_arts,
+      position: recipe.position,
+      category: recipe.category,
+      tags: recipe.tags,
+      combo: recipe.combo,
     })
     .eq("id", recipeId);
 
   // エラーが発生した場合
   if (error) {
     // エラーハンドリング
-    console.error("Error inserting data:", error.message);
+    console.error("Error updating data:", error.message);
   }
 }

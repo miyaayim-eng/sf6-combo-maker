@@ -1,7 +1,16 @@
+import { FC, memo } from "react";
+
 import Link from "next/link";
 import styles from "./index.module.scss";
 
-export const RecipeCategory = ({ category, characterName }) => {
+import { CommonType } from "@/types/commonType";
+
+type Props = {
+  category: CommonType["recipe"]["category"];
+  characterName: CommonType["characterName"];
+};
+
+export const RecipeCategory: FC<Props> = memo(({ category, characterName }) => {
   const categoryName = category;
   const href = {
     pathname: `/character/${characterName}/`,
@@ -15,4 +24,6 @@ export const RecipeCategory = ({ category, characterName }) => {
       </Link>
     </p>
   );
-};
+});
+
+RecipeCategory.displayName = "RecipeCategory";

@@ -150,7 +150,6 @@ export type Database = {
       recipes: {
         Row: {
           category: string | null;
-          character_id: number | null;
           character_name: string | null;
           combo: Json[] | null;
           created_at: string;
@@ -160,17 +159,15 @@ export type Database = {
           overdrive: number | null;
           password: number | null;
           position: string | null;
-          superarts: number | null;
+          super_arts: number | null;
           tags: string[] | null;
           title: string | null;
           total_damage: number | null;
           updated_at: string;
-          use_meta_data2: Json;
           user_id: string | null;
         };
         Insert: {
           category?: string | null;
-          character_id?: number | null;
           character_name?: string | null;
           combo?: Json[] | null;
           created_at?: string;
@@ -180,17 +177,15 @@ export type Database = {
           overdrive?: number | null;
           password?: number | null;
           position?: string | null;
-          superarts?: number | null;
+          super_arts?: number | null;
           tags?: string[] | null;
           title?: string | null;
           total_damage?: number | null;
           updated_at?: string;
-          use_meta_data2?: Json;
           user_id?: string | null;
         };
         Update: {
           category?: string | null;
-          character_id?: number | null;
           character_name?: string | null;
           combo?: Json[] | null;
           created_at?: string;
@@ -200,22 +195,14 @@ export type Database = {
           overdrive?: number | null;
           password?: number | null;
           position?: string | null;
-          superarts?: number | null;
+          super_arts?: number | null;
           tags?: string[] | null;
           title?: string | null;
           total_damage?: number | null;
           updated_at?: string;
-          use_meta_data2?: Json;
           user_id?: string | null;
         };
         Relationships: [
-          {
-            foreignKeyName: "recipes_character_id_fkey";
-            columns: ["character_id"];
-            isOneToOne: false;
-            referencedRelation: "characters";
-            referencedColumns: ["id"];
-          },
           {
             foreignKeyName: "recipes_character_name_fkey";
             columns: ["character_name"];

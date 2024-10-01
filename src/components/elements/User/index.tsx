@@ -20,8 +20,8 @@ export const User = () => {
       if (!user.bool) {
         // セッションがあるときだけ現在ログインしているユーザーを取得する
         if (data.session !== null) {
-          const loginUserData = await getLoginUser();
-          const newUser = { bool: true, name: loginUserData.displayName };
+          const loginUser = await getLoginUser();
+          const newUser = { bool: true, name: loginUser?.display_name };
           setUser(newUser);
         }
       }

@@ -1,18 +1,27 @@
+import { FC, memo } from "react";
 import Link from "next/link";
 import styles from "./index.module.scss";
 
-export const RecipeTag = ({ tag, characterName }) => {
-  const tagName = tag;
+import { CommonType } from "@/types/commonType";
+
+type Props = {
+  tag: CommonType["tag"]["name"];
+  characterName: CommonType["characterName"];
+};
+
+export const RecipeTag: FC<Props> = memo(({ tag, characterName }) => {
   const href = {
     pathname: `/character/${characterName}/`,
-    query: { tags: tagName },
+    query: { tags: JSON.stringify(tag) },
   };
 
   return (
     <li>
       <Link href={href} className={styles.link}>
-        {tagName}
+        {tag}
       </Link>
     </li>
   );
-};
+});
+
+RecipeTag.displayName = "RecipeTag";

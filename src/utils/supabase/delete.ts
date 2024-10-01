@@ -3,10 +3,12 @@
 // ---------------------------------------------------------------------
 "use server";
 
+import { CommonType } from "@/types/commonType";
+
 // サーバー側の処理なので、サーバー側のSupabaseクライアントを使用
 import { createClient } from "@/utils/supabase/client";
 
-export async function deleteRecipe(recipeId, recipe: recipe) {
+export async function deleteRecipe(recipeId: CommonType["recipe"]["id"]) {
   // Supabaseクライアントを作成
   const supabase = await createClient();
 

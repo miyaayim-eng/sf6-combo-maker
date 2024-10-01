@@ -1,3 +1,15 @@
+// クエリの型定義
+type Queries = {
+  order?: {
+    column?: string;
+    ascending?: boolean;
+  };
+  eq?: {
+    column: string;
+    value: string | number;
+  };
+};
+
 // ---------------------------------------------------------------------
 // データ取得(Fetch data)
 // ---------------------------------------------------------------------
@@ -5,7 +17,7 @@
 import { createClient } from "@/utils/supabase/server";
 
 // すべてのrecipesを取得するための非同期関数
-export const fetchRecipes = async (queries = {}) => {
+export const fetchRecipes = async (queries: Queries = {}) => {
   try {
     // Supabaseクライアントを作成
     const supabase = createClient();
@@ -25,26 +37,22 @@ export const fetchRecipes = async (queries = {}) => {
           : defaultOrder.ascending,
     };
 
-    // ベースのクエリを作成
-    let query = supabase.from("recipes");
-
-    // クエリにselectが指定されている場合、それを適用
-    if (queries.select) {
-      query = query.select(queries.select);
-    } else {
-      query = query.select("*");
-    }
+    // selectを最初に呼び出して型を適切に変換
+    let query = supabase.from("recipes").select();
 
     // クエリにorderを適用
     query = query.order(order.column, { ascending: order.ascending });
 
     // クエリにeqを適用
     if (queries.eq) {
+      // console.log("queries.eq =>", queries.eq);
       query = query.eq(queries.eq.column, queries.eq.value);
+      // console.log("query =>", query);
     }
 
     // クエリを実行し、responseに代入
     const response = await query;
+    // console.log("response =>", response);
 
     if (response.error) {
       console.error("Supabaseエラー:", response.error);
@@ -211,55 +219,48 @@ export const fetchCharacters = async () => {
   }
 };
 
-export const fetchUsers = async (queries = {}) => {
-  try {
-    // Supabaseクライアントを作成
-    const supabase = createClient();
+// export const fetchUsers = async (queries: Queries = {}) => {
+//   try {
+//     // Supabaseクライアントを作成
+//     const supabase = createClient();
 
-    // デフォルトの order 設定
-    const defaultOrder = {
-      column: "created_at",
-      ascending: false, // 新しいものから古いものへ並べ替え
-    };
+//     // デフォルトの order 設定
+//     const defaultOrder = {
+//       column: "created_at",
+//       ascending: false, // 新しいものから古いものへ並べ替え
+//     };
 
-    // column と ascending にそれぞれデフォルト値を適用
-    const order = {
-      column: queries.order?.column || defaultOrder.column,
-      ascending:
-        queries.order?.ascending !== undefined
-          ? queries.order.ascending
-          : defaultOrder.ascending,
-    };
+//     // column と ascending にそれぞれデフォルト値を適用
+//     const order = {
+//       column: queries.order?.column || defaultOrder.column,
+//       ascending:
+//         queries.order?.ascending !== undefined
+//           ? queries.order.ascending
+//           : defaultOrder.ascending,
+//     };
 
-    // ベースのクエリを作成
-    let query = supabase.from("users");
+//     // ベースのクエリを作成
+//     let query = supabase.from("users").select(queries.select || "*");
 
-    // クエリにselectが指定されている場合、それを適用
-    if (queries.select) {
-      query = query.select(queries.select);
-    } else {
-      query = query.select("*");
-    }
+//     // クエリにorderを適用
+//     query = query.order(order.column, { ascending: order.ascending });
 
-    // クエリにorderを適用
-    query = query.order(order.column, { ascending: order.ascending });
+//     // クエリにeqを適用
+//     if (queries.eq) {
+//       query = query.eq(queries.eq.column, queries.eq.value);
+//     }
 
-    // クエリにeqを適用
-    if (queries.eq) {
-      query = query.eq(queries.eq.column, queries.eq.value);
-    }
+//     // クエリを実行し、responseに代入
+//     const response = await query;
 
-    // クエリを実行し、responseに代入
-    const response = await query;
-
-    if (response.error) {
-      console.error("Supabaseエラー:", response.error);
-      return [];
-    }
-    // console.log("response.data => ", response.data);
-    return response.data;
-  } catch (error) {
-    console.error("APIフェッチエラー:", error);
-    return [];
-  }
-};
+//     if (response.error) {
+//       console.error("Supabaseエラー:", response.error);
+//       return [];
+//     }
+//     // console.log("response.data => ", response.data);
+//     return response.data;
+//   } catch (error) {
+//     console.error("APIフェッチエラー:", error);
+//     return [];
+//   }
+// };

@@ -8,10 +8,10 @@ export default async function Layout({
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const loginUserData = await getLoginUser();
+  const loginUser = await getLoginUser();
   return (
     <>
-      {loginUserData ? (
+      {loginUser ? (
         <>{children}</>
       ) : (
         <>

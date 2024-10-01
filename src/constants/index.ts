@@ -1,7 +1,12 @@
 // 1ページの表示件数
 // export const LIMIT = 12;
 
-export const actionCategories = [
+type actionCategoriesType = {
+  name: string;
+  display: string;
+};
+
+export const actionCategories: actionCategoriesType[] = [
   {
     name: "common_moves",
     display: "共通行動",
@@ -24,7 +29,13 @@ export const actionCategories = [
   },
 ];
 
-export const overdriveOptions = [
+type OverdriveOptionType = {
+  id: number;
+  name: number;
+  display: number;
+};
+
+export const overdriveOptions: OverdriveOptionType[] = [
   {
     id: 1,
     name: 0,
@@ -82,7 +93,13 @@ export const overdriveOptions = [
   },
 ];
 
-export const superartsOptions = [
+type SuperartsOptionType = {
+  id: number;
+  name: number;
+  display: number;
+};
+
+export const superartsOptions: SuperartsOptionType[] = [
   {
     id: 1,
     name: 0,
@@ -105,7 +122,13 @@ export const superartsOptions = [
   },
 ];
 
-export const positionOptions = [
+type PositionOptionType = {
+  id: number;
+  name: string;
+  display: string;
+};
+
+export const positionOptions: PositionOptionType[] = [
   {
     id: 1,
     name: "中央",

@@ -1,13 +1,22 @@
+import { FC, memo } from "react";
+
 import styles from "./index.module.scss";
 
 import { RecipeComboListItem } from "src/features/RecipeComboListItem/";
 
-export const RecipeComboList = ({ combo, commonData }) => {
+import { CommonType } from "@/types/commonType";
+
+type Props = {
+  combo: CommonType["recipeCombo"];
+  commonData: CommonType["commonData"];
+};
+
+export const RecipeComboList: FC<Props> = memo(({ combo, commonData }) => {
   // console.log(combo);
 
   return (
     <ul className={styles.list}>
-      {combo.map((action, index) => {
+      {combo?.map((action, index) => {
         return (
           <RecipeComboListItem
             key={index}
@@ -18,4 +27,6 @@ export const RecipeComboList = ({ combo, commonData }) => {
       })}
     </ul>
   );
-};
+});
+
+RecipeComboList.displayName = "RecipeComboList";

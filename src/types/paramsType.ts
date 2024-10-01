@@ -1,6 +1,6 @@
-export type paramsType = {
-  params: {
-    id: string;
-    name: string;
-  };
-};
+// export type ParamsType = {
+//   params: {
+//     id: string;
+//     name: string;
+//   };
+// };

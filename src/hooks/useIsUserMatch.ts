@@ -4,7 +4,7 @@ import { useRecoilValue } from "recoil";
 import { userState } from "@/state/recoilState";
 import { useEffect, useState } from "react";
 
-export const useIsUserMatch = (UserId: string) => {
+export const useIsUserMatch = (UserId: string | null) => {
   const user = useRecoilValue(userState);
   const [isHydrated, setIsHydrated] = useState(false);
   const [isUserMatch, setIsUserMatch] = useState<boolean | null>(null);

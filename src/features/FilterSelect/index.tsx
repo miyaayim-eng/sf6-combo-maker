@@ -11,9 +11,23 @@ import {
 
 import { FilterSelectRadio } from "@/features/FilterSelectRadio";
 import { FilterSelectCheckbox } from "@/features/FilterSelectCheckbox";
-// import { getFilteredRecipes } from "@/utils/getFilteredRecipes";
 
-export const FilterSelect = ({ commonData, params, updateParams }) => {
+import { CommonType } from "@/types/commonType";
+
+type Props = {
+  commonData: CommonType["commonData"];
+  params: {
+    overdrive: CommonType["recipe"]["overdrive"];
+    superarts: CommonType["recipe"]["super_arts"];
+    position: CommonType["recipe"]["position"];
+    category: CommonType["recipe"]["category"];
+    tags: CommonType["recipe"]["tags"];
+    user: CommonType["recipe"]["user_id"];
+  };
+  updateParams: () => void;
+};
+
+export const FilterSelect = ({ commonData, params, updateParams }: Props) => {
   // console.log("params => ", params);
   // console.log("params.tags => ", params.tags);
   //
@@ -37,10 +51,14 @@ export const FilterSelect = ({ commonData, params, updateParams }) => {
     const searchParams = new URLSearchParams(window.location.search);
 
     // 各フィルターの状態を確認して、URL パラメーターに設定
-    if (selectOverdrive != null) searchParams.set("overdrive", selectOverdrive);
+    if (selectOverdrive != null)
+      // URLパラメータが常に文字列である必要があるため、toString() で数値を文字列に変換
+      searchParams.set("overdrive", selectOverdrive.toString());
     else searchParams.delete("overdrive"); // nullの場合は削除
 
-    if (selectSuperarts != null) searchParams.set("superarts", selectSuperarts);
+    if (selectSuperarts != null)
+      // URLパラメータが常に文字列である必要があるため、toString() で数値を文字列に変換
+      searchParams.set("superarts", selectSuperarts.toString());
     else searchParams.delete("superarts"); // nullの場合は削除
 
     if (selectPosition != null) searchParams.set("position", selectPosition);

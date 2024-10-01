@@ -1,9 +1,15 @@
+import { FC, memo } from "react";
+
 import Link from "next/link";
-import Image from "next/image";
+import { CommonType } from "@/types/commonType";
 
-import styles from "./index.module.scss";
+// import styles from "./index.module.scss";
 
-export const CharacterListItem = ({ character }) => {
+type Props = {
+  character: CommonType["character"];
+};
+
+export const CharacterListItem: FC<Props> = memo(({ character }) => {
   const href = `/character/${character.name}/`;
   const characterName = character.display;
 
@@ -12,4 +18,6 @@ export const CharacterListItem = ({ character }) => {
       <Link href={href}>{characterName}</Link>
     </li>
   );
-};
+});
+
+CharacterListItem.displayName = "CharacterListItem";
