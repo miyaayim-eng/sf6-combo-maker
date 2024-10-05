@@ -1,11 +1,13 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useResetUserState } from "@/hooks/useResetUserState";
 import Link from "next/link";
 import styles from "./page.module.scss";
 
 export default function Page() {
   const router = useRouter();
+  const resetUserState = useResetUserState(); // カスタムフックをコンポーネントのトップで呼び出
 
   const handleDeleteUser = async () => {
     try {
@@ -16,6 +18,8 @@ export default function Page() {
       if (!response.ok) {
         throw new Error("Failed to delete the user");
       }
+
+      resetUserState(); // ユーザーステートをリセット
 
       // 削除完了ページへリダイレクト
       router.push("/deleteUser/complete/");

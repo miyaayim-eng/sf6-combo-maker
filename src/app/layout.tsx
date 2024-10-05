@@ -9,6 +9,8 @@ import { UpdateUser } from "@/components/elements/User/UpdateUser/";
 import { Header } from "@/components/layouts/Header/";
 import { Main } from "@/components/layouts/Main/";
 
+import { TestViewLoginUser } from "@/features/TestViewLoginUser";
+
 export const metadata: Metadata = {
   title: "SF6 Combo Maker",
   description: "",
@@ -28,6 +30,7 @@ export default function RootLayout({
       <body className={notoSansJP.className}>
         <RecoilProvider>
           <UpdateUser />
+          <TestViewLoginUser />
           <Header />
           <Main>{children}</Main>
         </RecoilProvider>

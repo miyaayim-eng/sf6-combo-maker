@@ -95,6 +95,9 @@ export const InputAddCombo: FC<Props> = memo(
       resetSelect();
     }, [recipeCharacter]);
 
+    // 追加ボタンのdisabled判定
+    const isButtonDisabled = !selectedCategory || !selectedActionId;
+
     return (
       <div className={styles.container}>
         <select
@@ -129,7 +132,12 @@ export const InputAddCombo: FC<Props> = memo(
             </option>
           ))}
         </select>
-        <button type="button" onClick={onClickAdd} className={styles.button}>
+        <button
+          type="button"
+          onClick={onClickAdd}
+          disabled={isButtonDisabled}
+          className={styles.button}
+        >
           追加
         </button>
       </div>

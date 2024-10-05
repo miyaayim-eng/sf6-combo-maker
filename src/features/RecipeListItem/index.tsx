@@ -1,4 +1,4 @@
-// import Link from "next/link";
+import Link from "next/link";
 import { FC, memo } from "react";
 
 import styles from "./index.module.scss";
@@ -55,6 +55,9 @@ export const RecipeListItem: FC<Props> = memo(
         <div className={styles.combo}>
           <RecipeComboList combo={recipe.combo} commonData={commonData} />
         </div>
+        <p>
+          <Link href={`/recipe/${recipe.id}`}>詳細ページへ</Link>
+        </p>
         <EditButton recipeId={recipe.id} recipeUserId={recipe.user_id} />
       </li>
     );

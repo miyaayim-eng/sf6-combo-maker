@@ -240,6 +240,12 @@ export const FormRecipe: FC<Props> = memo(
         <p className={styles.text}>レシピ入力エリア</p>
         <div className={styles.form}>
           <div className={styles.inputContainer}>
+            {recipeId && (
+              <div>
+                <p>レシピID</p>
+                <p>{recipeId}</p>
+              </div>
+            )}
             <div>
               <label htmlFor="position" className={styles.label}>
                 キャラクター
@@ -365,10 +371,10 @@ export const FormRecipe: FC<Props> = memo(
               <p className={styles.label}>コンボ</p>
               <div className={styles.inputBox}>
                 <InputComboArea
-                  recipeCombo={recipeCombo}
-                  setRecipeCombo={setRecipeCombo}
                   commonData={commonData}
                   recipeCharacter={recipeCharacter}
+                  recipeCombo={recipeCombo}
+                  setRecipeCombo={setRecipeCombo}
                 />
               </div>
             </div>

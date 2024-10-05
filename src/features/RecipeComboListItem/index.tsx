@@ -32,7 +32,7 @@ export const RecipeComboListItem: FC<Props> = memo(({ action, commonData }) => {
     <li className={styles.item}>
       <div className={styles.inner}>
         <p className={styles.name}>{commandName}</p>
-        <p className={styles.command}>
+        {/* <p className={styles.command}>
           {commandId.map((inputId: number, index: number) => {
             const displayInput = convertDisplayInput(
               commonData.inputs,
@@ -44,7 +44,7 @@ export const RecipeComboListItem: FC<Props> = memo(({ action, commonData }) => {
               </span>
             );
           })}
-        </p>
+        </p> */}
         <p className={styles.command}>
           {commandId.map((inputId: number, index: number) => {
             const displayInputInfo = convertDisplayInputInfo(
