@@ -14,12 +14,14 @@ export const ComboList: FC<Props> = memo(
   ({ commonData, comboList, onClickDeleteCombo }) => {
     return (
       <ol className={styles.list}>
-        {comboList?.map((item: any, index: number) => {
+        {comboList?.map((combo: any, index: number) => {
+          // console.log("combo => ", combo);
+
           return (
             <ComboListItem
-              key={item.listId}
+              key={combo.listId}
               commonData={commonData}
-              data={item}
+              combo={combo}
               onClickDeleteCombo={() => onClickDeleteCombo(index)}
             />
           );

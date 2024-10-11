@@ -32,26 +32,34 @@ export const RecipeListItem: FC<Props> = memo(
         <div>
           <p>ID：{recipe.id}</p>
         </div>
-        <div>
-          <p className={styles.title}>{recipe.title}</p>
-        </div>
-        <div>
-          <p className={styles.description}>
-            {renderTextWithLineBreaks(recipe.description || "")}
-          </p>
-        </div>
+        {recipe.title && (
+          <div>
+            <p className={styles.title}>{recipe.title}</p>
+          </div>
+        )}
+        {recipe.description && (
+          <div>
+            <p className={styles.description}>
+              {renderTextWithLineBreaks(recipe.description || "")}
+            </p>
+          </div>
+        )}
         <div className={styles.info}>
           <RecipeInfo recipe={recipe} />
         </div>
-        <div className={styles.category}>
-          <RecipeCategory
-            category={recipe.category}
-            characterName={characterName}
-          />
-        </div>
-        <div className={styles.tags}>
-          <RecipeTags tags={recipe.tags} characterName={characterName} />
-        </div>
+        {recipe.category && (
+          <div className={styles.category}>
+            <RecipeCategory
+              category={recipe.category}
+              characterName={characterName}
+            />
+          </div>
+        )}
+        {recipe.tags && (
+          <div className={styles.tags}>
+            <RecipeTags tags={recipe.tags} characterName={characterName} />
+          </div>
+        )}
         <div className={styles.combo}>
           <RecipeComboList combo={recipe.combo} commonData={commonData} />
         </div>

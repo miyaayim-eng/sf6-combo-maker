@@ -18,6 +18,7 @@ import { InputSelect } from "@/features/InputSelect";
 import { InputRadios } from "@/features/InputRadios";
 import { InputCheckboxes } from "@/features/InputCheckboxes";
 import { InputComboArea } from "@/features/InputComboArea";
+import { BackButton } from "@/features/BackButton/";
 
 import { CommonType } from "@/types/commonType";
 
@@ -31,12 +32,14 @@ type Props = {
   commonData: CommonType["commonData"];
   recipeId?: CommonType["recipe"]["id"]; // 省略可能にする
   currentRecipe?: CommonType["recipe"]; // 省略可能にする
+  isEditing: boolean; // 新規登録or編集を判断する
 };
 
 export const FormRecipe: FC<Props> = memo(
-  ({ commonData, recipeId, currentRecipe }) => {
+  ({ commonData, recipeId, currentRecipe, isEditing }) => {
     const router = useRouter(); // useRouter フックを使用してルーターオブジェクトを取得
     const user = useRecoilValue(userState);
+    const [isPending, setIsPending] = useState(false);
 
     const [recipeCharacter, setRecipeCharacter] = useState(
       currentRecipe?.character_name || ""
@@ -70,21 +73,7 @@ export const FormRecipe: FC<Props> = memo(
     );
     // console.log("recipeTags =>", recipeTags);
 
-    const testCombo = [
-      {
-        listId: 1,
-        actionId: "2",
-        actionCategory: "unique_attacks",
-      },
-      {
-        listId: 2,
-        actionId: "2",
-        actionCategory: "unique_attacks",
-      },
-    ];
-
-    // const [recipeCombo, setRecipeCombo] = useState(currentRecipe?.combo || []);
-    const [recipeCombo, setRecipeCombo] = useState(testCombo);
+    const [recipeCombo, setRecipeCombo] = useState(currentRecipe?.combo || []);
     // console.log("recipeCombo =>", recipeCombo);
 
     const [recipePassword, setRecipePassword] = useState<number | "">(
@@ -184,6 +173,9 @@ export const FormRecipe: FC<Props> = memo(
 
     // 登録ボタンクリック時の動作
     const onClickInsert = async () => {
+      if (isPending) return; // すでに処理中の場合は早期リターン
+      setIsPending(true);
+
       try {
         const recipe: any = createRecipe();
         // console.log("recipe => ", recipe);
@@ -199,39 +191,47 @@ export const FormRecipe: FC<Props> = memo(
         // const recipe = createRecipe();
         // console.log("recipe => ", recipe);
         console.error("Error inserting recipe:", error);
+        setIsPending(false); // エラー時はisPendingをfalseに戻す
       }
     };
 
     // 更新ボタンクリック時の動作
     const onClickUpdate = async () => {
+      if (isPending) return; // すでに処理中の場合は早期リターン
+      setIsPending(true);
+
       try {
         const recipe = createRecipe();
 
-        // updateRecipe 関数を呼び出してデータを挿入、成功を待つ
+        // updateRecipe 関数を呼び出してデータを更新、成功を待つ
         await updateRecipe(recipeId as number, recipe as any);
 
-        // 挿入が成功した場合、ページ遷移を行う
+        // 更新が成功した場合、ページ遷移を行う
         const path = `/character/${recipeCharacter}/`;
 
         router.push(path); // 遷移先の URL を指定
       } catch (error) {
         console.error("Error updating  recipe:", error);
+        setIsPending(false); // エラー時はisPendingをfalseに戻す
       }
     };
 
-    // 更新ボタンクリック時の動作
+    // 削除ボタンクリック時の動作
     const onClickDelete = async () => {
+      if (isPending) return; // すでに処理中の場合は早期リターン
+      setIsPending(true);
+
       try {
-        // updateRecipe 関数を呼び出してデータを挿入、成功を待つ
+        // deleteRecipe 関数を呼び出してデータを削除、成功を待つ
         await deleteRecipe(recipeId as number);
 
-        // 挿入が成功した場合、ページ遷移を行う
-
+        // 削除が成功した場合、ページ遷移を行う
         const path = `/character/${recipeCharacter}/`;
 
         router.push(path); // 遷移先の URL を指定
       } catch (error) {
         console.error("Error deleting  recipe:", error);
+        setIsPending(false); // エラー時はisPendingをfalseに戻す
       }
     };
 
@@ -247,7 +247,8 @@ export const FormRecipe: FC<Props> = memo(
               </div>
             )}
             <div>
-              <label htmlFor="position" className={styles.label}>
+              <p>必須</p>
+              <label htmlFor="character" className={styles.label}>
                 キャラクター
               </label>
               <div className={styles.inputBox}>
@@ -369,6 +370,7 @@ export const FormRecipe: FC<Props> = memo(
             </div>
             <div>
               <p className={styles.label}>コンボ</p>
+              <p className={styles.label}>必須：2個以上</p>
               <div className={styles.inputBox}>
                 <InputComboArea
                   commonData={commonData}
@@ -393,36 +395,48 @@ export const FormRecipe: FC<Props> = memo(
               />
             </div>
           </div>
-          <p>
-            <button
-              type="button"
-              className={styles.button}
-              disabled={!recipeTitle}
-              onClick={onClickInsert}
-            >
-              新規登録
-            </button>
-          </p>
-          <p>
-            <button
-              type="button"
-              className={styles.button}
-              disabled={!recipeTitle}
-              onClick={onClickUpdate}
-            >
-              上書き保存
-            </button>
-          </p>
-          <p>
-            <button
-              type="button"
-              className={styles.button}
-              disabled={!recipeTitle}
-              onClick={onClickDelete}
-            >
-              削除
-            </button>
-          </p>
+          {isEditing ? (
+            <>
+              <p>
+                <button
+                  type="button"
+                  className={styles.button}
+                  disabled={
+                    isPending || !recipeCharacter || recipeCombo.length < 2
+                  }
+                  onClick={onClickUpdate}
+                >
+                  上書き保存
+                </button>
+              </p>
+              <p>
+                <button
+                  type="button"
+                  className={styles.button}
+                  disabled={isPending}
+                  onClick={onClickDelete}
+                >
+                  登録済みのレシピを削除する
+                </button>
+              </p>
+            </>
+          ) : (
+            <p>
+              <button
+                type="button"
+                className={styles.button}
+                disabled={
+                  isPending || !recipeCharacter || recipeCombo.length < 2
+                }
+                onClick={onClickInsert}
+              >
+                {isPending ? "送信中です" : "新規登録"}
+              </button>
+            </p>
+          )}
+
+          {isPending && <p>情報を送信中です、今しばらくお待ちください。</p>}
+          <BackButton />
         </div>
       </>
     );

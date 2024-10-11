@@ -13,7 +13,7 @@ export default async function Page() {
         <h1 className={styles.pageTitle__title}>レシピ新規作成</h1>
       </div>
       <div className={styles.inner}>
-        <FormRecipe commonData={commonData} />
+        <FormRecipe commonData={commonData} isEditing={false} />
       </div>
     </>
   );

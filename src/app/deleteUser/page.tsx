@@ -1,46 +1,15 @@
-"use client";
-
-import { useRouter } from "next/navigation";
-import { useResetUserState } from "@/hooks/useResetUserState";
 import Link from "next/link";
 import styles from "./page.module.scss";
+import { DeleteAccountButton } from "@/features/DeleteAccountButton";
 
 export default function Page() {
-  const router = useRouter();
-  const resetUserState = useResetUserState(); // カスタムフックをコンポーネントのトップで呼び出
-
-  const handleDeleteUser = async () => {
-    try {
-      const response = await fetch("/api/deleteUser", {
-        method: "POST",
-      });
-
-      if (!response.ok) {
-        throw new Error("Failed to delete the user");
-      }
-
-      resetUserState(); // ユーザーステートをリセット
-
-      // 削除完了ページへリダイレクト
-      router.push("/deleteUser/complete/");
-    } catch (error) {
-      console.error("アカウント削除エラー:", error);
-      // エラーページへリダイレクト
-      router.push("/error");
-    }
-  };
-
   return (
     <div className={styles.inner}>
       <h1 className={styles.pageTitle}>アカウント削除</h1>
       <p>
         本当にアカウントを削除してもよろしいですか？この操作は元に戻せません。
       </p>
-      <p className={styles.buttonBox}>
-        <button onClick={handleDeleteUser} className={styles.button}>
-          アカウントを削除する
-        </button>
-      </p>
+      <DeleteAccountButton />
       <p className={styles.buttonBox}>
         <Link href="/user/" className={styles.button}>
           ユーザー画面へもどる

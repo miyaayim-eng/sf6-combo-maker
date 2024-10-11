@@ -32,6 +32,7 @@ export const RecipeEditor: FC<Props> = memo(
             commonData={commonData}
             recipeId={recipeId}
             currentRecipe={currentRecipe}
+            isEditing={true}
           />
         ) : (
           <p>userIdが不一致です。</p>

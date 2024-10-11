@@ -1,44 +1,62 @@
 import styles from "./index.module.scss";
 import { FC, memo } from "react";
+import { getActionInfo } from "@/utils/getActionInfo";
+import { convertDisplayInputInfo } from "@/utils/convertDisplayInputInfo";
 import { CommonType } from "@/types/commonType";
 
 type Props = {
   commonData: CommonType["commonData"];
-  data: any;
+  combo: any;
   onClickDeleteCombo: (index: number) => void;
 };
 
 export const ComboListItem: FC<Props> = memo(
-  ({ commonData, data, onClickDeleteCombo }) => {
-    // console.log("data => ", data);
+  ({ commonData, combo, onClickDeleteCombo }) => {
+    // console.log("combo => ", combo);
     // console.log("commonData => ", commonData);
-    const actionCategory = data.actionCategory;
-    const actionId = data.actionId;
 
-    const actionName = commonData[
-      actionCategory as keyof CommonType["commonData"]
-    ].find((action: any) => {
-      return action.id == actionId;
-    })?.name;
-    // console.log("commonData[actionCategory] => ", commonData[actionCategory]);
-    // console.log("actionName => ", actionName);
+    const actionInfo = getActionInfo(
+      commonData,
+      combo.actionCategory,
+      combo.actionId
+    );
+    // console.log("actionInfo => ", actionInfo);
+    const commandName = (actionInfo as any)?.display_normal ?? "";
+    const commandId = (actionInfo as any)?.command ?? [];
 
     return (
       <li className={styles.container}>
-        <div className={styles.orderBox}>
+        {/* <div className={styles.orderBox}>
           <button type="button" className={styles.orderButton}>
             ↑
           </button>
           <button type="button" className={styles.orderButton}>
             ↓
           </button>
-        </div>
-        <p className={styles.name}>{actionName}</p>
-        <p>{data.listId}</p>
+        </div> */}
+        <p>[{combo.listId}]</p>
+        <p className={styles.name}>{commandName}</p>
+
+        <p className={styles.command}>
+          {commandId.map((inputId: number, index: number) => {
+            const displayInputInfo = convertDisplayInputInfo(
+              commonData.inputs,
+              inputId
+            );
+            return (
+              <span
+                key={index}
+                className={`${styles.input} ${displayInputInfo.inputName}`}
+              >
+                {displayInputInfo.displayInput}
+              </span>
+            );
+          })}
+        </p>
         <button
           type="button"
           className={styles.button}
-          onClick={() => onClickDeleteCombo(data.listId)}
+          onClick={() => onClickDeleteCombo(combo.listId)}
         >
           削除
         </button>

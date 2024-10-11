@@ -57,6 +57,8 @@ export async function signup(formData: FormData) {
   // ログインやサインアップをするには「Supabaseクライアント」が必要。
   const supabase = createClient();
 
+  // console.log("formData => ", formData);
+
   // フォームからデータ取得
   const email = formData.get("email") as string;
   const password = formData.get("password") as string;
@@ -77,6 +79,7 @@ export async function signup(formData: FormData) {
 
   // サインアップエラーの場合
   if (error) {
+    console.error("サインアップエラー:", error.message);
     redirect("/error");
   }
 

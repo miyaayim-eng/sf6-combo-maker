@@ -1,6 +1,6 @@
 import Link from "next/link";
 import styles from "./page.module.scss";
-import { signup } from "@/utils/supabase/account";
+import { SignupButton } from "@/features/SignupButton";
 
 export default function Page() {
   return (
@@ -35,6 +35,7 @@ export default function Page() {
               required
               className={styles.input}
             />
+            <p className={styles.passwordInfo}>6桁以上の半角英数字</p>
           </div>
           <div className={styles.inputBox}>
             <label htmlFor="displayName" className={styles.label}>
@@ -49,11 +50,8 @@ export default function Page() {
             />
           </div>
 
-          <p className={styles.buttonBox}>
-            <button formAction={signup} className={styles.button}>
-              登録する
-            </button>
-          </p>
+          <SignupButton />
+
           <p className={styles.buttonBox}>
             <Link href="/login/" className={styles.button}>
               ログイン画面にもどる

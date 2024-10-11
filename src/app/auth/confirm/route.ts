@@ -9,7 +9,9 @@ export async function GET(request: NextRequest) {
   const { searchParams } = new URL(request.url);
   const token_hash = searchParams.get("token_hash");
   const type = searchParams.get("type") as EmailOtpType | null;
-  const next = searchParams.get("next") ?? "/";
+
+  // 認証完了後のリダイレクト先を登録完了ページに設定
+  const next = searchParams.get("next") ?? "/signup/verified";
 
   // リダイレクト先のURLを設定
   const redirectTo = request.nextUrl.clone();
