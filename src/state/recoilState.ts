@@ -11,3 +11,10 @@ export const userState = atom({
   default: { bool: false, name: null, id: null },
   effects_UNSTABLE: [persistAtom],
 });
+
+// ゲストで登録したレシピのパスワード
+export const passwordState = atom({
+  key: "passwordState",
+  default: null,
+  effects_UNSTABLE: [persistAtom],
+});

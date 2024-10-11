@@ -66,7 +66,11 @@ export const RecipeListItem: FC<Props> = memo(
         <p>
           <Link href={`/recipe/${recipe.id}`}>詳細ページへ</Link>
         </p>
-        <EditButton recipeId={recipe.id} recipeUserId={recipe.user_id} />
+        <EditButton
+          recipeId={recipe.id}
+          recipeUserId={recipe.user_id}
+          recipePassword={recipe.password}
+        />
       </li>
     );
   }

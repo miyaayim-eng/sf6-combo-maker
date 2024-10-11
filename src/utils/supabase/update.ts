@@ -30,6 +30,7 @@ export async function updateRecipe(
       category: recipe.category,
       tags: recipe.tags,
       combo: recipe.combo,
+      password: recipe.password,
     })
     .eq("id", recipeId);
 

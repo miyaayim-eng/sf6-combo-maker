@@ -1,17 +1,17 @@
 import { ReactNode } from "react";
-import styles from "./layout.module.scss";
-import Link from "next/link";
-import { getLoginUser } from "@/utils/getLoginUser";
+// import styles from "./layout.module.scss";
+// import Link from "next/link";
+// import { getLoginUser } from "@/utils/getLoginUser";
 
 export default async function Layout({
   children,
 }: Readonly<{
   children: ReactNode;
 }>) {
-  const loginUser = await getLoginUser();
+  // const loginUser = await getLoginUser();
   return (
     <>
-      {loginUser ? (
+      {/* {loginUser ? (
         <>{children}</>
       ) : (
         <>
@@ -22,7 +22,8 @@ export default async function Layout({
             </Link>
           </p>
         </>
-      )}
+      )} */}
+      <>{children}</>
     </>
   );
 }

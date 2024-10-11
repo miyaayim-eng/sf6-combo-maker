@@ -17,12 +17,19 @@ export const useIsUserMatch = (UserId: string | null) => {
   // ユーザー情報が完全にロードされた後で比較を行う
   useEffect(() => {
     if (isHydrated) {
-      if (user.id === null) {
-        // ログインしていない状態（UserIdがnullの場合）はfalse
-        setIsUserMatch(false);
-      } else {
-        setIsUserMatch(user.id === UserId);
-      }
+      // if (user.id === null) {
+      //   // ログインしていない状態（UserIdがnullの場合）はfalse
+      //   setIsUserMatch(false);
+      // } else {
+      setIsUserMatch(user.id === UserId);
+
+      // console.log("");
+      // console.log("user.id => ", user.id);
+      // console.log("UserId => ", UserId);
+      // console.log(user.id === UserId);
+      // console.log("");
+
+      // }
     }
   }, [isHydrated, user.id, UserId]);
 

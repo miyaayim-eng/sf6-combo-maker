@@ -27,7 +27,7 @@ export async function insertRecipe(recipe: CommonType["recipe"]) {
     category: recipe.category,
     tags: recipe.tags,
     combo: recipe.combo,
-    // password: recipe.recipePassword,
+    password: recipe.password,
   });
 
   // エラーが発生した場合

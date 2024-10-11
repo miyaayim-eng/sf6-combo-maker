@@ -2,7 +2,7 @@
 
 import styles from "./index.module.scss";
 
-import { useState, useEffect, FC, memo } from "react";
+import { useState, FC, memo } from "react";
 import { useRouter } from "next/navigation";
 import { useRecoilValue } from "recoil";
 
@@ -45,7 +45,7 @@ export const FormRecipe: FC<Props> = memo(
       currentRecipe?.character_name || ""
     );
     const [recipeUserId, setRecipeUserId] = useState(
-      currentRecipe?.user_id || user.id
+      currentRecipe?.user_id || user.id || null
     );
     const [recipeTitle, setRecipeTitle] = useState(currentRecipe?.title || "");
     const [recipeDescription, setRecipeDescription] = useState(
@@ -76,7 +76,7 @@ export const FormRecipe: FC<Props> = memo(
     const [recipeCombo, setRecipeCombo] = useState(currentRecipe?.combo || []);
     // console.log("recipeCombo =>", recipeCombo);
 
-    const [recipePassword, setRecipePassword] = useState<number | "">(
+    const [recipePassword, setRecipePassword] = useState<string | "">(
       currentRecipe?.password || ""
     );
 
@@ -142,17 +142,19 @@ export const FormRecipe: FC<Props> = memo(
       }
     };
 
-    const onChangeRecipePassword = (
-      e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-      const value = e.target.value;
-      setRecipePassword(value === "" ? "" : parseFloat(value)); // 空文字列の場合も考慮
+    // const onChangeRecipePassword = (
+    //   e: React.ChangeEvent<HTMLSelectElement>
+    // ) => {
+    //   const value = e.target.value;
+    //   setRecipePassword(value === "" ? "" : value);
+    // };
+
+    const onChangeRecipePassword = (e: React.ChangeEvent<HTMLInputElement>) => {
+      setRecipePassword(e.target.value);
     };
 
     // レシピオブジェクト作成関数
     const createRecipe = () => {
-      // console.log("recipeDescription => ", recipeDescription);
-
       return {
         user_id: recipeUserId,
         character_name: recipeCharacter,
@@ -184,7 +186,8 @@ export const FormRecipe: FC<Props> = memo(
         await insertRecipe(recipe);
 
         // 挿入が成功した場合、ページ遷移を行う
-        const path = `/character/${recipeCharacter}/`;
+        // const path = `/character/${recipeCharacter}/`;
+        const path = `/posts/complete/`;
 
         router.push(path); // 遷移先の URL を指定
       } catch (error) {
@@ -381,20 +384,25 @@ export const FormRecipe: FC<Props> = memo(
               </div>
             </div>
           </div>
-          <div>
-            <label htmlFor="totalDamage" className={styles.label}>
-              パスワード（半角数字4桁）　※編集削除に使用します。
-            </label>
-            <div className={styles.inputBox}>
-              <InputText
-                id="password"
-                value={recipePassword}
-                name="password"
-                placeholder="例）1234"
-                onChange={onChangeRecipePassword}
-              />
+          {recipeUserId === null && (
+            <div>
+              <label htmlFor="password" className={styles.label}>
+                パスワード（半角英数字）
+              </label>
+              <p>
+                ゲストでも編集・削除をおこなう場合は、パスワードを入力してください。
+              </p>
+              <div className={styles.inputBox}>
+                <InputText
+                  id="password"
+                  value={recipePassword || ""}
+                  name="password"
+                  placeholder="例）19az"
+                  onChange={onChangeRecipePassword}
+                />
+              </div>
             </div>
-          </div>
+          )}
           {isEditing ? (
             <>
               <p>

@@ -75,7 +75,7 @@ export const InputComboArea: FC<Props> = memo(
 
     return (
       <div className={styles.container}>
-        {commonData && (
+        {commonData && recipeCombo && recipeCombo.length > 0 && (
           <ComboList
             commonData={commonData}
             comboList={recipeCombo}
