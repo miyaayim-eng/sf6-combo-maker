@@ -57,7 +57,11 @@ export const RecipesDetail: FC<Props> = memo(({ commonData, recipe }) => {
       <div className={styles.combo}>
         <RecipeComboList combo={recipe.combo} commonData={commonData} />
       </div>
-      <EditButton recipeId={recipe.id} recipeUserId={recipe.user_id} />
+      <EditButton
+        recipeId={recipe.id}
+        recipeUserId={recipe.user_id}
+        recipePassword={recipe.password}
+      />
       <BackButton fallbackPath={`/character/${recipe.character_name}/`} />
     </>
   );

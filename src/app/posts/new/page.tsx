@@ -13,6 +13,8 @@ export default async function Page() {
         <h1 className={styles.pageTitle__title}>レシピ新規作成</h1>
       </div>
       <div className={styles.inner}>
+        <p>ログインして投稿すると、投稿レシピの管理が可能になります。</p>
+        <br />
         <FormRecipe commonData={commonData} isEditing={false} />
       </div>
     </>

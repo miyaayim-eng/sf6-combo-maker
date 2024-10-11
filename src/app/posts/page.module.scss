@@ -1,0 +1,12 @@
+@use "@global" as *;
+
+.inner {
+  @include content-inner(lg);
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.pageTitle {
+  padding: 40px 0;
+  background-color: #ccc;
+}
