@@ -2,12 +2,12 @@ import { redirect } from "next/navigation";
 
 import styles from "./page.module.scss";
 
-import Link from "next/link";
 import { getCommonData } from "@/utils/getCommonData";
 import { getLoginUser } from "@/utils/getLoginUser";
 import { fetchRecipes } from "@/utils/supabase/fetch";
-import { SignoutButton } from "@/features/SignoutButton";
 import { UserRecipes } from "@/features/UserRecipes";
+import { SignoutButton } from "@/features/button/SignoutButton";
+import { NavigationButton } from "@/features/layout/PrimaryButton/NavigationButton";
 
 export default async function Page() {
   const commonData = await getCommonData();
@@ -25,9 +25,9 @@ export default async function Page() {
       <div className={styles.inner}>
         <p>{loginUser.display_name}でログインしています。</p>
         <p className={styles.buttonBox}>
-          <Link href="/posts/new/" className={styles.button}>
+          <NavigationButton href="/posts/new/">
             レシピを投稿する
-          </Link>
+          </NavigationButton>
         </p>
         <UserRecipes
           characters={commonData.characters}
@@ -38,9 +38,9 @@ export default async function Page() {
           <SignoutButton />
         </form>
         <p className={styles.buttonBox}>
-          <Link href="/deleteUser/" className={styles.button}>
+          <NavigationButton href="/deleteAccount/">
             ログイン中のアカウントを削除する
-          </Link>
+          </NavigationButton>
         </p>
       </div>
     </>

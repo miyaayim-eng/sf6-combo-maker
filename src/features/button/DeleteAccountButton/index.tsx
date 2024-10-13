@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useResetUserState } from "@/hooks/useResetUserState";
 import { useTransition } from "react";
-import styles from "./index.module.scss";
+import { ActionButton } from "@/features/layout/PrimaryButton/ActionButton";
 
 export const DeleteAccountButton = () => {
   const router = useRouter();
@@ -22,7 +22,7 @@ export const DeleteAccountButton = () => {
         }
 
         resetUserState(); // ユーザーステートをリセット
-        router.push("/deleteUser/complete/"); // 削除完了ページへリダイレクト
+        router.push("/deleteAccount/complete/"); // 削除完了ページへリダイレクト
       } catch (error) {
         console.error("アカウント削除エラー:", error);
         router.push("/error"); // エラーページへリダイレクト
@@ -32,15 +32,9 @@ export const DeleteAccountButton = () => {
 
   return (
     <div>
-      <p className={styles.buttonBox}>
-        <button
-          onClick={handleDeleteUser}
-          className={styles.button}
-          disabled={isPending}
-        >
-          {isPending ? "削除中です..." : "アカウントを削除する"}
-        </button>
-      </p>
+      <ActionButton onClick={handleDeleteUser} disabled={isPending}>
+        {isPending ? "削除中です..." : "アカウントを削除する"}
+      </ActionButton>
       {isPending && <p>アカウントを削除中です、今しばらくお待ちください。</p>}
     </div>
   );

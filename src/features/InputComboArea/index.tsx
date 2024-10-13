@@ -1,6 +1,6 @@
 import styles from "./index.module.scss";
 
-import { useState, useEffect, FC, memo, useRef } from "react";
+import { useState, useEffect, useCallback, FC, memo, useRef } from "react";
 
 import { ComboList } from "@/features/ComboList";
 import { InputAddCombo } from "@/features/InputAddCombo";
@@ -51,10 +51,11 @@ export const InputComboArea: FC<Props> = memo(
     };
 
     // 全てのコンボを初期化
-    const resetCombo = () => {
+    const resetCombo = useCallback(() => {
+      // useCallbackでラップ
       setRecipeCombo([]);
       setLastListId(0);
-    };
+    }, [setRecipeCombo]); // 依存関係を空にすることで、常に同じインスタンスを使用
 
     // キャラクター変更時、全てのコンボを初期化
     // useRefを使って前回のrecipeCharacterの値を保持する

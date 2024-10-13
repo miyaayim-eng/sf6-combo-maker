@@ -35,17 +35,11 @@ export default async function Page({ params }: Params) {
         <p className={styles.characterNameEn}>{characterData?.display_en}</p>
       </div>
       <div className={styles.inner}>
-        <div className={styles.sort}>
-          <p>ソートエリア</p>
-        </div>
         <RecipesContainer
           commonData={commonData}
           recipes={characterRecipes}
           characterName={characterName}
         />
-        {/* <div className={styles.pager}>
-          <p>もっと表示する</p>
-        </div> */}
       </div>
     </>
   );

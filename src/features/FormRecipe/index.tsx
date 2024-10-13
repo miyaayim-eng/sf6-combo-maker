@@ -18,7 +18,8 @@ import { InputSelect } from "@/features/InputSelect";
 import { InputRadios } from "@/features/InputRadios";
 import { InputCheckboxes } from "@/features/InputCheckboxes";
 import { InputComboArea } from "@/features/InputComboArea";
-import { BackButton } from "@/features/BackButton/";
+import { BackButton } from "@/features/button/BackButton/";
+import { ActionButton } from "@/features/layout/PrimaryButton/ActionButton";
 
 import { CommonType } from "@/types/commonType";
 
@@ -406,40 +407,31 @@ export const FormRecipe: FC<Props> = memo(
           {isEditing ? (
             <>
               <p>
-                <button
-                  type="button"
-                  className={styles.button}
+                <ActionButton
                   disabled={
                     isPending || !recipeCharacter || recipeCombo.length < 2
                   }
                   onClick={onClickUpdate}
                 >
                   上書き保存
-                </button>
+                </ActionButton>
               </p>
               <p>
-                <button
-                  type="button"
-                  className={styles.button}
-                  disabled={isPending}
-                  onClick={onClickDelete}
-                >
+                <ActionButton disabled={isPending} onClick={onClickDelete}>
                   登録済みのレシピを削除する
-                </button>
+                </ActionButton>
               </p>
             </>
           ) : (
             <p>
-              <button
-                type="button"
-                className={styles.button}
+              <ActionButton
                 disabled={
                   isPending || !recipeCharacter || recipeCombo.length < 2
                 }
                 onClick={onClickInsert}
               >
                 {isPending ? "送信中です" : "新規登録"}
-              </button>
+              </ActionButton>
             </p>
           )}
 

@@ -2,7 +2,7 @@
 
 import { FC, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import styles from "./index.module.scss";
+import { ActionButton } from "@/features/layout/PrimaryButton/ActionButton";
 
 interface BackButtonProps {
   fallbackPath?: string;
@@ -37,9 +37,5 @@ export const BackButton: FC<BackButtonProps> = ({ fallbackPath = "/" }) => {
       ? "前に戻る"
       : "一覧へもどる";
 
-  return (
-    <button type="button" className={styles.button} onClick={onClickGoBack}>
-      {buttonText}
-    </button>
-  );
+  return <ActionButton onClick={onClickGoBack}>{buttonText}</ActionButton>;
 };

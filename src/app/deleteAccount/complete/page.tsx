@@ -1,5 +1,5 @@
+import { NavigationButton } from "@/features/layout/PrimaryButton/NavigationButton";
 import styles from "./page.module.scss";
-import Link from "next/link";
 
 export default function Page() {
   return (
@@ -13,9 +13,7 @@ export default function Page() {
         <p>登録されたアカウントを削除しました。</p>
       </div>
       <p className={styles.buttonBox}>
-        <Link href="/" className={styles.button}>
-          トップページへ
-        </Link>
+        <NavigationButton href="/">トップページへ</NavigationButton>
       </p>
     </>
   );

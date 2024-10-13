@@ -1,6 +1,8 @@
 import Link from "next/link";
-import styles from "./page.module.scss";
 import { login } from "@/utils/supabase/account";
+import { NavigationButton } from "@/features/layout/PrimaryButton/NavigationButton";
+import { ActionButton } from "@/features/layout/PrimaryButton/ActionButton";
+import styles from "./page.module.scss";
 
 export default function Page() {
   return (
@@ -34,16 +36,13 @@ export default function Page() {
               className={styles.input}
             />
           </div>
-
           <p className={styles.buttonBox}>
-            <button formAction={login} className={styles.button}>
-              ログイン
-            </button>
+            <ActionButton formAction={login}>ログイン</ActionButton>
           </p>
           <p className={styles.buttonBox}>
-            <Link href="/signup/input/" className={styles.button}>
+            <NavigationButton href="/signup/input/">
               アカウントを新規登録する
-            </Link>
+            </NavigationButton>
           </p>
         </form>
       </div>

@@ -1,0 +1,26 @@
+@use "@global" as *;
+
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 8px 16px;
+  border: 1px solid #333;
+  border-radius: var(--border-radius);
+  background-color: #333;
+  color: #fff;
+  transition: 0.3s ease;
+  transition-property: color, background-color;
+
+  @include hover {
+    background-color: #fff;
+    color: #333;
+  }
+
+  &:disabled {
+    opacity: 0.5;
+    // cursor: not-allowed;
+    // pointer-events: none; // 無効化してクリックを防ぐ
+  }
+}

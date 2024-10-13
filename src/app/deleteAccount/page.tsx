@@ -1,6 +1,6 @@
-import Link from "next/link";
+import { DeleteAccountButton } from "@/features/button/DeleteAccountButton";
+import { NavigationButton } from "@/features/layout/PrimaryButton/NavigationButton";
 import styles from "./page.module.scss";
-import { DeleteAccountButton } from "@/features/DeleteAccountButton";
 
 export default function Page() {
   return (
@@ -11,9 +11,7 @@ export default function Page() {
       </p>
       <DeleteAccountButton />
       <p className={styles.buttonBox}>
-        <Link href="/user/" className={styles.button}>
-          ユーザー画面へもどる
-        </Link>
+        <NavigationButton href="/user/">ユーザー画面へもどる</NavigationButton>
       </p>
     </div>
   );

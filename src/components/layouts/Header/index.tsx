@@ -2,7 +2,7 @@ import Link from "next/link";
 import styles from "./index.module.scss";
 
 import { fetchCharacters } from "@/utils/supabase/fetch";
-import { UserButton } from "@/components/layouts/Header/UserButton";
+import { HeaderLoginButton } from "@/features/button/HeaderLoginButton";
 
 export const Header = async () => {
   const characters = await fetchCharacters();
@@ -41,7 +41,7 @@ export const Header = async () => {
                 </Link>
               </li>
               <li className={styles.nav__item}>
-                <UserButton />
+                <HeaderLoginButton />
               </li>
             </ul>
           </nav>

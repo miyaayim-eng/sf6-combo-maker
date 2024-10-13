@@ -1,6 +1,7 @@
 import Link from "next/link";
 import styles from "./page.module.scss";
-import { SignupButton } from "@/features/SignupButton";
+import { SignupButton } from "@/features/button/SignupButton";
+import { NavigationButton } from "@/features/layout/PrimaryButton/NavigationButton";
 
 export default function Page() {
   return (
@@ -53,9 +54,9 @@ export default function Page() {
           <SignupButton />
 
           <p className={styles.buttonBox}>
-            <Link href="/login/" className={styles.button}>
+            <NavigationButton href="/login/">
               ログイン画面にもどる
-            </Link>
+            </NavigationButton>
           </p>
         </form>
       </div>

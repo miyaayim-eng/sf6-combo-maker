@@ -1,0 +1,39 @@
+@use "@global" as *;
+
+.form {
+  width: fit-content;
+}
+.label {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+
+  &:before {
+    content: "";
+    position: absolute;
+    top: 42%;
+    right: 16px;
+    width: 6px;
+    aspect-ratio: 1;
+    border-right: 2px solid #999;
+    border-bottom: 2px solid #999;
+    rotate: 45deg;
+    translate: -50% 0;
+    pointer-events: none;
+  }
+}
+
+.select {
+  appearance: none;
+  min-height: 32px;
+  min-width: 88px;
+  padding: 0 calc(16px + 30px) 0 16px;
+  border: 1px solid #bcb6b3;
+  border-radius: var(--border-radius);
+  background-color: #fff;
+  color: #333;
+  font-size: to-rem(14);
+  cursor: pointer;
+}

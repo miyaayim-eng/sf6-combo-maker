@@ -1,0 +1,7 @@
+@use "@global" as *;
+
+.nav {
+  &__link {
+    padding: 8px;
+  }
+}

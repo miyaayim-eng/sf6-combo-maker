@@ -5,8 +5,8 @@ import { RecipeInfo } from "@/features/RecipeInfo/";
 import { RecipeCategory } from "@/features/RecipeCategory/";
 import { RecipeTags } from "@/features/RecipeTags/";
 import { RecipeComboList } from "@/features/RecipeComboList/";
-import { EditButton } from "@/features/EditButton/";
-import { BackButton } from "@/features/BackButton/";
+import { EditButton } from "@/features/button/EditButton/";
+import { BackButton } from "@/features/button/BackButton/";
 
 import { CommonType } from "@/types/commonType";
 

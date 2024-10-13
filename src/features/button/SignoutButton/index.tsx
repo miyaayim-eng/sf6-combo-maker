@@ -2,8 +2,8 @@
 
 import { useResetUserState } from "@/hooks/useResetUserState";
 import { signout } from "@/utils/supabase/account";
-import styles from "./index.module.scss";
 
+import { ActionButton } from "@/features/layout/PrimaryButton/ActionButton";
 export const SignoutButton = () => {
   const resetUserState = useResetUserState(); // カスタムフックをコンポーネントのトップで呼び出す
 
@@ -12,11 +12,5 @@ export const SignoutButton = () => {
     resetUserState(); // ユーザーステートをリセット
   };
 
-  return (
-    <p>
-      <button type="button" onClick={handleSignout} className={styles.button}>
-        ログアウトする
-      </button>
-    </p>
-  );
+  return <ActionButton onClick={handleSignout}>ログアウトする</ActionButton>;
 };

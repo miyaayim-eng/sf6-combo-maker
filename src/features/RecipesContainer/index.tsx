@@ -1,12 +1,12 @@
 "use client";
 
-import { useState, useEffect, FC, memo } from "react";
+import { useState, useEffect, useCallback, FC, memo } from "react";
 import { useSearchParams } from "next/navigation";
 import styles from "./index.module.scss";
 
 import { getFilteredRecipesByParams } from "@/utils/getFilteredRecipesByParams";
 import { getFilterParams } from "@/utils/getFilterParams";
-import { FilterSelect } from "@/features/FilterSelect";
+import { FilterArea } from "@/features/inputs/filter/FilterArea";
 import { RecipeList } from "@/features/RecipeList/";
 
 import { CommonType } from "@/types/commonType";
@@ -27,12 +27,12 @@ export const RecipesContainer: FC<Props> = memo(
     const [currentRecipes, setCurrentRecipes] = useState(recipes); // 一応初期値にrecipesを入れた
 
     // URLパラメーターを取得して state にセット
-    const updateParams = () => {
+    const updateParams = useCallback(() => {
       const newParams = getFilterParams(searchParamsHook);
 
       // console.log("newParams => ", newParams);
       setParams(newParams);
-    };
+    }, [searchParamsHook]);
 
     // URLパラメーター（searchParamsHook）の変更を監視して実行
     useEffect(() => {
@@ -43,7 +43,7 @@ export const RecipesContainer: FC<Props> = memo(
       if (JSON.stringify(params) !== JSON.stringify(newParams)) {
         updateParams(); // 初回レンダリング時にパラメータをセット
       }
-    }, [searchParamsHook]);
+    }, [searchParamsHook, params, updateParams]);
 
     // URLパラメータまたはレシピが変更された時に実行
     useEffect(() => {
@@ -54,14 +54,14 @@ export const RecipesContainer: FC<Props> = memo(
     return (
       <div className={styles.info}>
         <div className={styles.filter}>
-          <FilterSelect
+          <FilterArea
             commonData={commonData}
             params={params}
             updateParams={updateParams}
           />
           <div className={styles.recipeList}>
             <br />
-            <p>件数：{currentRecipes.length}</p>
+            <p>レシピ件数：{currentRecipes.length}</p>
             <br />
             <RecipeList
               commonData={commonData}

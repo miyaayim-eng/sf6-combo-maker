@@ -30,7 +30,7 @@ export default function RootLayout({
       <body className={notoSansJP.className}>
         <RecoilProvider>
           <UpdateUser />
-          <TestViewLoginUser />
+          {/* <TestViewLoginUser /> */}
           <Header />
           <Main>{children}</Main>
         </RecoilProvider>
