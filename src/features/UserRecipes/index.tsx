@@ -39,7 +39,7 @@ export const UserRecipes: FC<Props> = memo(
 
     return (
       <div className={styles.container}>
-        <p>投稿したレシピを確認する</p>
+        <p className={styles.heading}>投稿したレシピ</p>
         <ul className={styles.list}>
           {characters.map((character) => {
             const postLength = usersCharacterRecipes(character.name);
@@ -54,8 +54,9 @@ export const UserRecipes: FC<Props> = memo(
                   href={`/character/${character.name}/?user=${loginUser.user_id}`}
                   className={styles.link}
                 >
-                  <p className={styles.name}>{character.display}</p>
-                  <p>投稿数{postLength}件</p>
+                  <span className={styles.nameJa}>{character.display}</span>
+                  {/* <span className={styles.nameEn}>{character.display_en}</span> */}
+                  <span className={styles.count}>{postLength}件</span>
                 </Link>
               </li>
             );

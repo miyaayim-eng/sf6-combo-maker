@@ -1,51 +1,31 @@
 @use "@global" as *;
 
-.inner {
-  @include content-inner(lg);
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
 .pageTitle {
-  padding: 40px 0;
-  background-color: #ccc;
-}
+  padding-top: 36px;
+  // padding: 36px 0;
+  // background-color: #333;
+  // color: #fff;
 
-.form {
-  padding: 8px;
-  margin-bottom: 32px;
-  border: 1px solid #000;
-}
-
-.inputBox {
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #000;
-}
-
-.label {
-  margin-right: 16px;
-}
-
-.input {
-  padding: 8px;
-  border: 1px solid #000;
-  background-color: #eee;
-}
-
-.buttonBox {
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #000;
-}
-
-.button {
-  padding: 8px;
-  border: 1px solid #000;
-  color: #fff;
-  background-color: #000;
-  @include hover {
-    color: #000;
-    background-color: #fff;
+  &__title {
+    font-size: to-rem(32);
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
   }
+}
+
+.text {
+  width: fit-content;
+  margin: 0 auto;
+}
+
+.buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 48px;
+}
+.buttonBox {
+  max-width: 300px;
 }

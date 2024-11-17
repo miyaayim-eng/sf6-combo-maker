@@ -1,0 +1,40 @@
+@use "@global" as *;
+
+.box {
+  border: 1px solid #333;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+}
+
+.command,
+.name {
+  padding-block: 4px;
+  padding-inline: 8px;
+  font-size: to-rem(15);
+}
+
+.command {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // gap: 4px;
+}
+.input {
+  &:empty {
+    display: none;
+  }
+  &.plus {
+    margin-inline: 4px;
+    font-size: 0.9em;
+  }
+}
+.textBefore {
+  font-size: 0.7em;
+}
+
+.name {
+  display: flex;
+  justify-content: center;
+  background-color: #eee;
+  font-size: to-rem(12);
+}

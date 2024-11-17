@@ -1,7 +1,7 @@
 "use client";
 
 import { FC, memo, useState, useEffect } from "react";
-import { FormRecipe } from "@/features/FormRecipe";
+import { PostArea } from "@/features/inputs/post/PostArea";
 import { useIsUserMatch } from "@/hooks/useIsUserMatch";
 import { CommonType } from "@/types/commonType";
 import { useRecoilValue } from "recoil";
@@ -47,7 +47,7 @@ export const RecipeEditor: FC<Props> = memo(
     return (
       <>
         {isAuthorized ? (
-          <FormRecipe
+          <PostArea
             commonData={commonData}
             recipeId={recipeId}
             currentRecipe={currentRecipe}

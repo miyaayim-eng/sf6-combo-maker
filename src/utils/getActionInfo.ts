@@ -7,6 +7,9 @@ export const getActionInfo = (
   actionCategory: string,
   actionId: number
 ) => {
+  // console.log("actionCategory => ", actionCategory);
+  // console.log("actionId => ", actionId);
+
   const actionObject = commonData[
     actionCategory as keyof typeof commonData
   ].find((actionData) => {

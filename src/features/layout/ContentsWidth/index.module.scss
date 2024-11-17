@@ -1,0 +1,10 @@
+@use "@global" as *;
+
+.outer {
+  @include content-inner(md);
+}
+
+.inner {
+  padding-top: 36px;
+  padding-bottom: 36px;
+}

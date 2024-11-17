@@ -8,6 +8,7 @@ import { fetchRecipes } from "@/utils/supabase/fetch";
 import { UserRecipes } from "@/features/UserRecipes";
 import { SignoutButton } from "@/features/button/SignoutButton";
 import { NavigationButton } from "@/features/layout/PrimaryButton/NavigationButton";
+import { ContentsWidth } from "@/features/layout/ContentsWidth/";
 
 export default async function Page() {
   const commonData = await getCommonData();
@@ -20,29 +21,31 @@ export default async function Page() {
   return (
     <>
       <div className={styles.pageTitle}>
-        <h1 className={styles.pageTitle__title}>ユーザー画面</h1>
+        <ContentsWidth>
+          <h1 className={styles.pageTitle__title}>アカウントページ</h1>
+          <p className={styles.pageTitle__name}>{loginUser.display_name}さん</p>
+        </ContentsWidth>
       </div>
-      <div className={styles.inner}>
-        <p>{loginUser.display_name}でログインしています。</p>
-        <p className={styles.buttonBox}>
-          <NavigationButton href="/posts/new/">
-            レシピを投稿する
-          </NavigationButton>
-        </p>
+      <ContentsWidth paddingBlock={true}>
         <UserRecipes
           characters={commonData.characters}
           recipes={recipes}
           loginUser={loginUser}
         />
-        <form className={styles.form}>
+        <p className={styles.buttonBox}>
+          <NavigationButton href="/posts/new/">
+            レシピを投稿する
+          </NavigationButton>
+        </p>
+        <p className={styles.buttonBox}>
           <SignoutButton />
-        </form>
+        </p>
         <p className={styles.buttonBox}>
           <NavigationButton href="/deleteAccount/">
             ログイン中のアカウントを削除する
           </NavigationButton>
         </p>
-      </div>
+      </ContentsWidth>
     </>
   );
 }

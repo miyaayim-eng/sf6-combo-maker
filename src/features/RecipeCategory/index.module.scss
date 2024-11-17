@@ -1,8 +1,19 @@
 @use "@global" as *;
 
 .link {
-  display: block;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
   width: fit-content;
-  padding: 8px;
-  background-color: lightblue;
+  font-size: to-rem(14);
+  padding: 4px 8px;
+  border: 1px solid #333;
+  border-radius: var(--border-radius);
+  transition: 0.3s ease;
+  transition-property: color, background-color;
+
+  @include hover {
+    color: #fff;
+    background-color: #333;
+  }
 }

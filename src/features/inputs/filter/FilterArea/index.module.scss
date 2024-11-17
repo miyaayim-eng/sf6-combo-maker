@@ -82,6 +82,8 @@
 }
 
 .dt {
+  font-size: to-rem(15);
+  font-weight: 700;
   padding-right: 32px;
   @include mq(md) {
     padding-right: 0;
@@ -97,10 +99,6 @@
   @include mq(md) {
     padding-left: 12px;
   }
-}
-.dt {
-  font-size: to-rem(15);
-  font-weight: 700;
 }
 
 // .filterName {

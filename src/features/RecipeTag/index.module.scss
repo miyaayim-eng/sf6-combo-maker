@@ -1,8 +1,15 @@
 @use "@global" as *;
 
 .link {
-  display: block;
+  display: flex;
+  align-items: center;
+  column-gap: 4px;
   width: fit-content;
-  background-color: lightcoral;
-  padding: 8px;
+  font-size: to-rem(14);
+  padding: 4px 8px;
+
+  @include hover {
+    text-decoration: underline;
+    text-underline-offset: 0.2em;
+  }
 }

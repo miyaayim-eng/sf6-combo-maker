@@ -1,15 +1,16 @@
-import Link from "next/link";
 import { FC, memo } from "react";
 
-import styles from "./index.module.scss";
-
-import { RecipeInfo } from "@/features/RecipeInfo/";
-import { RecipeCategory } from "@/features/RecipeCategory/";
-import { RecipeTags } from "@/features/RecipeTags/";
-import { RecipeComboList } from "@/features/RecipeComboList/";
+import { RecipeTitle } from "@/features/RecipeTitle/";
+import { RecipeDescription } from "@/features/RecipeDescription/";
+import { RecipeInfo } from "@/features/RecipeInfo";
+import { RecipeCategory } from "@/features/RecipeCategory";
+import { RecipeTags } from "@/features/RecipeTags";
+import { RecipeCommandList } from "src/features/RecipeCommandList";
 import { EditButton } from "@/features/button/EditButton/";
+import { NavigationButton } from "@/features/layout/PrimaryButton/NavigationButton";
 
 import { CommonType } from "@/types/commonType";
+import styles from "./index.module.scss";
 
 type Props = {
   recipe: CommonType["recipe"];
@@ -28,49 +29,57 @@ export const RecipeListItem: FC<Props> = memo(
     // console.log(recipe);
 
     return (
-      <li className={styles.example}>
-        <div>
+      <li className={styles.card}>
+        {/* <div>
           <p>ID：{recipe.id}</p>
+        </div> */}
+        <div className={styles.title}>
+          {recipe.title && (
+            <RecipeTitle element="h1">{recipe.title}</RecipeTitle>
+          )}
         </div>
-        {recipe.title && (
-          <div>
-            <p className={styles.title}>{recipe.title}</p>
-          </div>
-        )}
-        {recipe.description && (
-          <div>
-            <p className={styles.description}>
+        <div className={styles.description}>
+          {recipe.description && (
+            <RecipeDescription>
               {renderTextWithLineBreaks(recipe.description || "")}
-            </p>
-          </div>
-        )}
+            </RecipeDescription>
+          )}
+        </div>
         <div className={styles.info}>
           <RecipeInfo recipe={recipe} />
         </div>
-        {recipe.category && (
-          <div className={styles.category}>
-            <RecipeCategory
-              category={recipe.category}
-              characterName={characterName}
-            />
+        {recipe.category || recipe.tags ? (
+          <div className={styles.genre}>
+            {recipe.category && (
+              <div className={styles.category}>
+                <RecipeCategory
+                  category={recipe.category}
+                  characterName={characterName}
+                />
+              </div>
+            )}
+            {recipe.tags && (
+              <div className={styles.tags}>
+                <RecipeTags tags={recipe.tags} characterName={characterName} />
+              </div>
+            )}
           </div>
-        )}
-        {recipe.tags && (
-          <div className={styles.tags}>
-            <RecipeTags tags={recipe.tags} characterName={characterName} />
-          </div>
-        )}
+        ) : null}
         <div className={styles.combo}>
-          <RecipeComboList combo={recipe.combo} commonData={commonData} />
+          <RecipeCommandList combo={recipe.combo} commonData={commonData} />
         </div>
-        <p>
-          <Link href={`/recipe/${recipe.id}`}>詳細ページへ</Link>
-        </p>
-        <EditButton
-          recipeId={recipe.id}
-          recipeUserId={recipe.user_id}
-          recipePassword={recipe.password}
-        />
+        <div className={styles.buttons}>
+          <p className={styles.navigationButton}>
+            <NavigationButton href={`/recipe/${recipe.id}`}>
+              詳細ページへ
+            </NavigationButton>
+          </p>
+          <EditButton
+            recipeId={recipe.id}
+            recipeUserId={recipe.user_id}
+            recipePassword={recipe.password}
+          />
+        </div>
       </li>
     );
   }

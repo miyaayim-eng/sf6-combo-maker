@@ -2,6 +2,11 @@
 
 .nav {
   &__link {
-    padding: 8px;
+    padding: 8px 16px;
+    @include mq(md) {
+      display: flex;
+      justify-content: center;
+      padding: 16px;
+    }
   }
 }

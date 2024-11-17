@@ -1,0 +1,20 @@
+@use "@global" as *;
+
+.radios {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 16px;
+}
+.label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+.input {
+  cursor: pointer;
+}
+.text {
+  font-size: to-rem(14);
+}

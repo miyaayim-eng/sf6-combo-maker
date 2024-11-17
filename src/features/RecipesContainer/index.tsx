@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback, FC, memo } from "react";
 import { useSearchParams } from "next/navigation";
-import styles from "./index.module.scss";
 
 import { getFilteredRecipesByParams } from "@/utils/getFilteredRecipesByParams";
 import { getFilterParams } from "@/utils/getFilterParams";
@@ -10,6 +9,7 @@ import { FilterArea } from "@/features/inputs/filter/FilterArea";
 import { RecipeList } from "@/features/RecipeList/";
 
 import { CommonType } from "@/types/commonType";
+import styles from "./index.module.scss";
 
 type Props = {
   commonData: CommonType["commonData"];
@@ -60,9 +60,13 @@ export const RecipesContainer: FC<Props> = memo(
             updateParams={updateParams}
           />
           <div className={styles.recipeList}>
-            <br />
-            <p>レシピ件数：{currentRecipes.length}</p>
-            <br />
+            {currentRecipes.length === 0 ? (
+              <p className={styles.recipesCount}>お探しのレシピは0件です。</p>
+            ) : (
+              <p className={styles.recipesCount}>
+                レシピ件数：{currentRecipes.length}件
+              </p>
+            )}
             <RecipeList
               commonData={commonData}
               recipes={currentRecipes}

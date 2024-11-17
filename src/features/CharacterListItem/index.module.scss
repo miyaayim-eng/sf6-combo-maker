@@ -1,1 +1,28 @@
 @use "@global" as *;
+
+.link {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 1px solid #333;
+  border-radius: var(--border-radius);
+  background-color: #333;
+  color: #fff;
+  transition: 0.3s ease;
+  transition-property: color, background-color;
+  @include hover {
+    background-color: #fff;
+    color: #333;
+  }
+}
+.nameJa {
+  font-size: to-rem(16);
+}
+.nameEn {
+  font-family: var(--font-en);
+  font-weight: 700;
+  font-size: to-rem(24);
+  line-height: 1.3;
+}

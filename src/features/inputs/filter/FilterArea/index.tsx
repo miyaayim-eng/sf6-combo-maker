@@ -9,8 +9,8 @@ import {
   positionOptions,
 } from "@/constants/";
 
-import { FilterRadio } from "@/features/inputs/filter/FilterRadio";
-import { FilterCheckbox } from "@/features/inputs/filter/FilterCheckbox";
+import { FilterRadios } from "@/features/inputs/filter/FilterRadios";
+import { FilterCheckboxes } from "@/features/inputs/filter/FilterCheckboxes";
 import { FilterSelectbox } from "@/features/inputs/filter/FilterSelectbox";
 
 import { CommonType } from "@/types/commonType";
@@ -161,7 +161,7 @@ export const FilterArea = ({ commonData, params, updateParams }: Props) => {
             <span className={styles.filterName}>カテゴリー</span>
           </dt>
           <dd className={styles.dd}>
-            <FilterRadio
+            <FilterRadios
               radioArray={commonData.categories}
               inputName="category"
               state={selectCategory}
@@ -172,7 +172,7 @@ export const FilterArea = ({ commonData, params, updateParams }: Props) => {
             <span className={styles.filterName}>タグ</span>
           </dt>
           <dd className={styles.dd}>
-            <FilterCheckbox
+            <FilterCheckboxes
               optionsArray={commonData.tags}
               inputName="tags"
               selectedValues={selectTags}

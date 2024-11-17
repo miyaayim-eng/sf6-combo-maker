@@ -1,12 +1,17 @@
 "use client";
 
+import { FC } from "react";
 import { useRecoilValue } from "recoil";
 import { userState } from "@/state/recoilState";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import styles from "./index.module.scss";
 
-export const HeaderLoginButton = () => {
+type Props = {
+  onClick: any;
+};
+
+export const HeaderLoginButton: FC<Props> = ({ onClick }) => {
   const user = useRecoilValue(userState);
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -22,13 +27,13 @@ export const HeaderLoginButton = () => {
 
   if (user.bool) {
     return (
-      <Link href="/user/" className={styles.nav__link}>
-        {user.name}
+      <Link href="/user/" className={styles.nav__link} onClick={onClick}>
+        {user.name}さん
       </Link>
     );
   } else {
     return (
-      <Link href="/login/" className={styles.nav__link}>
+      <Link href="/login/" className={styles.nav__link} onClick={onClick}>
         ログイン
       </Link>
     );

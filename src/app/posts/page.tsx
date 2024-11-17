@@ -2,7 +2,8 @@ import styles from "./page.module.scss";
 
 import { getCommonData } from "@/utils/getCommonData";
 
-import { FormRecipe } from "@/features/FormRecipe";
+import { PostArea } from "@/features/inputs/post/PostArea/";
+import { ContentsWidth } from "@/features/layout/ContentsWidth/";
 
 export default async function Page() {
   const commonData = await getCommonData();
@@ -10,11 +11,13 @@ export default async function Page() {
   return (
     <>
       <div className={styles.pageTitle}>
-        <h1 className={styles.pageTitle__title}>レシピ新規作成</h1>
+        <ContentsWidth>
+          <h1 className={styles.pageTitle__title}>レシピ新規作成</h1>
+        </ContentsWidth>
       </div>
-      <div className={styles.inner}>
-        <FormRecipe commonData={commonData} isEditing={false} />
-      </div>
+      <ContentsWidth paddingBlock={true}>
+        <PostArea commonData={commonData} isEditing={false} />
+      </ContentsWidth>
     </>
   );
 }

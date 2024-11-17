@@ -1,8 +1,11 @@
 import { FC, memo } from "react";
 import Link from "next/link";
-import styles from "./index.module.scss";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTag } from "@fortawesome/free-solid-svg-icons";
 
 import { CommonType } from "@/types/commonType";
+import styles from "./index.module.scss";
 
 type Props = {
   tag: CommonType["tag"]["name"];
@@ -18,7 +21,8 @@ export const RecipeTag: FC<Props> = memo(({ tag, characterName }) => {
   return (
     <li>
       <Link href={href} className={styles.link}>
-        {tag}
+        <FontAwesomeIcon icon={faTag} className={`${styles.icon}`} />
+        <span className={styles.text}> {tag}</span>
       </Link>
     </li>
   );

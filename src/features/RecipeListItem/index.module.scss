@@ -1,10 +1,31 @@
 @use "@global" as *;
 
-.title {
-  font-size: to-rem(18);
-  font-weight: 700;
+.card {
+  padding: 32px 5%;
+  border: 1px solid #333;
+  border-radius: var(--border-radius);
 }
-
-.description {
-  font-size: to-rem(14);
+.info {
+  margin-top: 8px;
+}
+.genre {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px 32px;
+  margin-top: 16px;
+}
+.combo {
+  margin-top: 16px;
+}
+.buttons {
+  margin-top: 36px;
+}
+.navigationButton {
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+}
+.EditButton {
+  margin-top: 48px;
 }

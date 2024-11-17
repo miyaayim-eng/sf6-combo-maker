@@ -17,9 +17,10 @@
   //* -------------------------------------------------------
   --vw: calc(100vw - var(--scrollbarWidth));
   --header-height: 104px;
-  // --body-paddingSide-variable: 5%;
+  --body-paddingSide-variable: 5%;
   --body-paddingSide-constant: 120px;
-  --body-paddingSide: var(--body-paddingSide-constant);
+  --body-paddingSide: var(--body-paddingSide-variable);
+  // --body-paddingSide: var(--body-paddingSide-constant);
   --contents-width-sm: 960px;
   --contents-width-md: 1200px;
   --contents-width-lg: 1360px;
@@ -29,6 +30,9 @@
   @include mq(md) {
     --header-height: 80px;
     --body-paddingSide-constant: 40px;
+  }
+  @include mq(2xs) {
+    --body-paddingSide-constant: 20px;
   }
 
   --border-radius: 4px;
@@ -51,6 +55,13 @@ body {
   letter-spacing: 0.05em;
   // color: rgb(var(--color-black));
   min-height: 100dvh;
+}
+
+main {
+  padding-top: 80px;
+  @include mq(md) {
+    padding-top: 64px;
+  }
 }
 
 // body.is-fixed {

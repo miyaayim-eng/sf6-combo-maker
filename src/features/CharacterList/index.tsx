@@ -10,7 +10,7 @@ export const CharacterList = async () => {
 
   return (
     <nav className={styles.nav}>
-      <ul>
+      <ul className={styles.list}>
         {characters.map((character: CommonType["character"]) => {
           return (
             <CharacterListItem key={character.name} character={character} />

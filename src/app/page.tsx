@@ -1,10 +1,11 @@
 import styles from "./page.module.scss";
 
 import { CharacterList } from "@/features/CharacterList/";
+import { ContentsWidth } from "@/features/layout/ContentsWidth/";
 
 export default function Page() {
   return (
-    <div className={styles.inner}>
+    <ContentsWidth paddingBlock={true}>
       <div>
         <h1 className={styles.siteTitle}>SF6 Combo Maker</h1>
         <p className={styles.siteDesc}>
@@ -18,6 +19,6 @@ export default function Page() {
         </div>
         <CharacterList />
       </section>
-    </div>
+    </ContentsWidth>
   );
 }

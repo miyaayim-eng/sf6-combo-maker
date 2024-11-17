@@ -1,7 +1,8 @@
 import { getCommonData } from "@/utils/getCommonData";
 import styles from "./page.module.scss";
 import { fetchRecipes } from "@/utils/supabase/fetch";
-import { RecipeEditor } from "@/features/RecipeEditor/";
+import { PostArea } from "@/features/inputs/post/PostArea";
+import { ContentsWidth } from "@/features/layout/ContentsWidth/";
 
 import { CommonType } from "@/types/commonType";
 
@@ -34,15 +35,18 @@ export default async function Page({ params }: Params) {
   return (
     <>
       <div className={styles.pageTitle}>
-        <h1 className={styles.pageTitle__title}>レシピ編集</h1>
+        <ContentsWidth>
+          <h1 className={styles.pageTitle__title}>レシピ編集</h1>
+        </ContentsWidth>
       </div>
-      <div className={styles.inner}>
-        <RecipeEditor
+      <ContentsWidth paddingBlock={true}>
+        <PostArea
           commonData={commonData}
           recipeId={recipeId}
           currentRecipe={currentRecipe as CommonType["recipe"]}
+          isEditing={true}
         />
-      </div>
+      </ContentsWidth>
     </>
   );
 }

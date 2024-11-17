@@ -1,15 +1,84 @@
 @use "@global" as *;
 
 .info {
+  --border: 1px solid #333;
+
   display: grid;
   grid-auto-flow: column;
-  // grid-template-rows: auto 1fr;
   grid-template-rows: auto auto;
+  width: fit-content;
+  @include mq(md) {
+    grid-auto-flow: row;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: none;
+  }
 }
 
 .title,
 .desc {
   display: grid;
   place-content: center;
-  border: 1px solid #000;
+  padding: 8px 16px;
+}
+
+.title {
+  background-color: #eee;
+}
+
+@include mq-not(md) {
+  .title:not(:last-of-type),
+  .desc:not(:last-of-type) {
+    border-right: var(--border);
+  }
+  .title {
+    border-top: var(--border);
+  }
+  .title:first-of-type {
+    border-top-left-radius: var(--border-radius);
+    border-left: var(--border);
+  }
+  .title:last-of-type {
+    border-top-right-radius: var(--border-radius);
+    border-right: var(--border);
+  }
+  .desc {
+    border-bottom: var(--border);
+  }
+  .desc:first-of-type {
+    border-bottom-left-radius: var(--border-radius);
+    border-left: var(--border);
+  }
+  .desc:last-of-type {
+    border-bottom-right-radius: var(--border-radius);
+    border-right: var(--border);
+  }
+}
+
+@include mq(md) {
+  .title,
+  .desc {
+    border-top: var(--border);
+  }
+  .title:last-of-type,
+  .desc:last-of-type {
+    border-bottom: var(--border);
+  }
+  .title {
+    border-left: var(--border);
+  }
+  .title:first-of-type {
+    border-top-left-radius: var(--border-radius);
+  }
+  .title:last-of-type {
+    border-bottom-left-radius: var(--border-radius);
+  }
+  .desc {
+    border-right: var(--border);
+  }
+  .desc:first-of-type {
+    border-top-right-radius: var(--border-radius);
+  }
+  .desc:last-of-type {
+    border-bottom-right-radius: var(--border-radius);
+  }
 }

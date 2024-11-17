@@ -1,51 +1,32 @@
 @use "@global" as *;
 
-.inner {
-  @include content-inner(lg);
-  padding-top: 80px;
-  padding-bottom: 80px;
-}
-
 .pageTitle {
-  padding: 40px 0;
-  background-color: #ccc;
-}
+  padding-top: 36px;
+  // padding: 36px 0;
+  // background-color: #333;
+  // color: #fff;
 
-.form {
-  padding: 8px;
-  margin-bottom: 32px;
-  border: 1px solid #000;
-}
+  &__title {
+    font-size: to-rem(32);
+    font-weight: 700;
+    line-height: 1.3;
+    text-align: center;
+  }
 
-.inputBox {
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #000;
-}
-
-.label {
-  margin-right: 16px;
-}
-
-.input {
-  padding: 8px;
-  border: 1px solid #000;
-  background-color: #eee;
+  &__name {
+    font-size: to-rem(24);
+    line-height: 1.3;
+    text-align: center;
+    margin-top: 16px;
+  }
 }
 
 .buttonBox {
-  padding: 8px;
-  margin-bottom: 16px;
-  border: 1px solid #000;
-}
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
 
-.button {
-  padding: 8px;
-  border: 1px solid #000;
-  color: #fff;
-  background-color: #000;
-  @include hover {
-    color: #000;
-    background-color: #fff;
+  &:not(:first-child) {
+    margin-top: 24px;
   }
 }

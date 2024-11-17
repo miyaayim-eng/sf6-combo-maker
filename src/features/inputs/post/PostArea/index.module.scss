@@ -1,0 +1,84 @@
+@use "@global" as *;
+
+.form {
+  padding: 16px 32px;
+  border-radius: var(--border-radius);
+  border: 1px solid #333;
+
+  @include mq(md) {
+    padding-inline: 20px;
+  }
+}
+
+.inputContainer {
+  --paddingBlock: 16px;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  row-gap: var(--paddingBlock);
+
+  @include mq(md) {
+    grid-template-columns: 1fr;
+    row-gap: 8px;
+  }
+}
+.inputTitle:not(:last-of-type),
+.inputDesc:not(:last-of-type) {
+  padding-bottom: var(--paddingBlock);
+  border-bottom: 1px solid #ddd;
+}
+
+.inputTitle {
+  font-size: to-rem(15);
+  font-weight: 700;
+  padding-right: 32px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  @include mq(md) {
+    padding-right: 0;
+  }
+
+  &:not(:last-of-type) {
+    @include mq(md) {
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+  }
+
+  &__text {
+    font-size: to-rem(14);
+    font-weight: 700;
+  }
+
+  &__required {
+    color: #fff;
+    font-size: to-rem(12);
+    background-color: lightcoral;
+    padding: 0 8px;
+    border-radius: var(--border-radius);
+
+    // &__small {
+    //   font-size: 0.8em;
+    // }
+  }
+}
+.inputDesc {
+  @include mq(md) {
+    padding-left: 12px;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 64px;
+}
+.buttonBox {
+  max-width: 300px;
+}
+
+.errorText {
+  text-align: center;
+}

@@ -5,9 +5,10 @@ import { useRouter } from "next/navigation";
 import { useRecoilState } from "recoil";
 import { passwordState } from "@/state/recoilState";
 
-import Link from "next/link";
 import { useIsUserMatch } from "@/hooks/useIsUserMatch";
-import { InputText } from "@/features/InputText";
+import { PostTextbox } from "@/features/inputs/post/PostTextbox/";
+import { NavigationButton } from "@/features/layout/PrimaryButton/NavigationButton";
+import { ActionButton } from "@/features/layout/PrimaryButton/ActionButton";
 
 export const EditButton = ({
   recipeId,
@@ -50,39 +51,44 @@ export const EditButton = ({
   // アカウントにログインしている場合
   if (useIsUserMatch(recipeUserId ?? "")) {
     return (
-      <p>
-        <Link href={`/posts/edit/${recipeId}`}>
-          アカウントが一致した場合の編集
-        </Link>
+      <p className={styles.userEdit}>
+        <NavigationButton href={`/posts/edit/${recipeId}`}>
+          編集
+        </NavigationButton>
       </p>
     );
   }
 
   // ゲストで登録したレシピの場合
-  if (recipeUserId === null) {
-    return (
-      <div>
-        <div>
-          <label htmlFor="password" className={styles.label}>
-            パスワード（半角英数字）
-          </label>
-          <div className={styles.inputBox}>
-            <InputText
-              id="password"
-              value={inputRecipePassword}
-              name="password"
-              placeholder="例）1234"
-              onChange={onChangeInputRecipePassword}
-            />
-          </div>
-        </div>
-        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
-        <button onClick={handleEditClick}>
-          ゲストで登録したレシピのパスワードが一致した場合の編集
-        </button>
-      </div>
-    );
-  }
+  // if (recipeUserId === null) {
+  //   return (
+  //     <div className={styles.guestEdit}>
+  //       <dl className={styles.inputContainer}>
+  //         <dt className={styles.inputTitle}>
+  //           <span className={styles.inputTitle__text}>
+  //             編集パスワード
+  //             <span className={styles.inputTitle__text__small}>
+  //               （半角英数字）
+  //             </span>
+  //           </span>
+  //         </dt>
+  //         <dd className={styles.inputDesc}>
+  //           <PostTextbox
+  //             id="password"
+  //             value={inputRecipePassword}
+  //             name="password"
+  //             placeholder="例）1234"
+  //             onChange={onChangeInputRecipePassword}
+  //           />
+  //         </dd>
+  //       </dl>
+  //       {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+  //       <p className={styles.guestEditButton}>
+  //         <ActionButton onClick={handleEditClick}>編集</ActionButton>
+  //       </p>
+  //     </div>
+  //   );
+  // }
 
   //どちらでもない場合は非表示
   return null;

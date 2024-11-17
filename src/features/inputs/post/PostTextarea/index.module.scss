@@ -1,0 +1,9 @@
+@use "@global" as *;
+
+.textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 4px 16px;
+  border: 1px solid #bcb6b3;
+  border-radius: var(--border-radius);
+}

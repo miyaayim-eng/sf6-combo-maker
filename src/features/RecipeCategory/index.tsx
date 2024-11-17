@@ -1,9 +1,11 @@
 import { FC, memo } from "react";
-
 import Link from "next/link";
-import styles from "./index.module.scss";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faList } from "@fortawesome/free-solid-svg-icons";
 
 import { CommonType } from "@/types/commonType";
+import styles from "./index.module.scss";
 
 type Props = {
   category: CommonType["recipe"]["category"];
@@ -20,7 +22,8 @@ export const RecipeCategory: FC<Props> = memo(({ category, characterName }) => {
   return (
     <p>
       <Link href={href} className={styles.link}>
-        {categoryName}
+        <FontAwesomeIcon icon={faList} className={`${styles.icon}`} />
+        <span className={styles.text}> {categoryName}</span>
       </Link>
     </p>
   );

@@ -1,8 +1,10 @@
 import styles from "./page.module.scss";
 
 import { getCommonData } from "@/utils/getCommonData";
+import { getCharacterData } from "@/utils/getCharacterData";
 import { fetchRecipes } from "@/utils/supabase/fetch";
 import { RecipesDetail } from "@/features/RecipesDetail/";
+import { ContentsWidth } from "@/features/layout/ContentsWidth/";
 
 import { CommonType } from "@/types/commonType";
 
@@ -31,18 +33,25 @@ export default async function Page({ params }: Params) {
   const recipes = await fetchRecipes(queries);
   // 配列から最初のオブジェクトを取り出す
   const recipe = recipes.length > 0 ? recipes[0] : null;
+  const characterData = getCharacterData(
+    commonData.characters,
+    recipe?.character_name ?? null
+  );
 
   return (
     <>
       <div className={styles.pageTitle}>
-        <h1 className={styles.recipeTitle}>{recipe?.title}</h1>
+        <ContentsWidth>
+          <h1 className={styles.characterNameJa}>{characterData?.display}</h1>
+          <p className={styles.characterNameEn}>{characterData?.display_en}</p>
+        </ContentsWidth>
       </div>
-      <div className={styles.inner}>
+      <ContentsWidth paddingBlock={true}>
         <RecipesDetail
           commonData={commonData}
           recipe={recipe as CommonType["recipe"]}
         />
-      </div>
+      </ContentsWidth>
     </>
   );
 }

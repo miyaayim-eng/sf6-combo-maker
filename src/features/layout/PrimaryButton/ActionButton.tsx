@@ -4,8 +4,8 @@ import styles from "./index.module.scss";
 type Props = {
   children: ReactNode;
   onClick?: () => void;
-  disabled?: boolean;
   formAction?: (formData: FormData) => Promise<void>;
+  disabled?: boolean;
   // loading?: boolean;
 };
 
