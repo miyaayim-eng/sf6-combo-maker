@@ -22,25 +22,25 @@ export const RecipeCommand: FC<Props> = memo(({ action, commonData }) => {
   return (
     <div className={styles.box}>
       <p className={styles.command}>
-        {commandId.map((inputId: number, index: number) => {
-          const displayInputInfo = convertDisplayInputInfo(
-            commonData.inputs,
-            inputId
-          );
-          return (
-            <span
-              key={index}
-              className={`${styles.input} ${
-                styles[displayInputInfo.inputName ?? "default"]
-              }`}
-            >
-              {textBefore && (
-                <span className={styles.textBefore}>{textBefore}</span>
-              )}
-              {displayInputInfo.displayInput}
-            </span>
-          );
-        })}
+        {textBefore && <span className={styles.textBefore}>{textBefore}</span>}
+        <span className={styles.inputBox}>
+          {commandId.map((inputId: number, index: number) => {
+            const displayInputInfo = convertDisplayInputInfo(
+              commonData.inputs,
+              inputId
+            );
+            return (
+              <span
+                key={index}
+                className={`${styles.input} ${
+                  styles[displayInputInfo.inputName ?? "default"]
+                }`}
+              >
+                {displayInputInfo.displayInput}
+              </span>
+            );
+          })}
+        </span>
       </p>
       <p className={styles.name}>{commandName}</p>
     </div>

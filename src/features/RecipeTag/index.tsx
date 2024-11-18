@@ -15,14 +15,14 @@ type Props = {
 export const RecipeTag: FC<Props> = memo(({ tag, characterName }) => {
   const href = {
     pathname: `/character/${characterName}/`,
-    query: { tags: JSON.stringify(tag) },
+    query: { tags: tag },
   };
 
   return (
     <li>
       <Link href={href} className={styles.link}>
         <FontAwesomeIcon icon={faTag} className={`${styles.icon}`} />
-        <span className={styles.text}> {tag}</span>
+        <span className={styles.text}>{tag}</span>
       </Link>
     </li>
   );
