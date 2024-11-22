@@ -417,8 +417,17 @@ export const PostArea: FC<Props> = memo(
           )} */}
           <div className={styles.buttonContainer}>
             <p className={styles.buttonBox}>
-              <BackButton />
+              {isEditing ? (
+                <NavigationButton href={`/character/${recipeCharacter}/`}>
+                  一覧へもどる
+                </NavigationButton>
+              ) : (
+                <NavigationButton href="/user/">
+                  アカウントページへ
+                </NavigationButton>
+              )}
             </p>
+
             {isEditing ? (
               <>
                 <p className={styles.buttonBox}>

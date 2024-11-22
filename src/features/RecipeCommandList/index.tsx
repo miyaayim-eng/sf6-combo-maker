@@ -18,7 +18,7 @@ export const RecipeCommandList: FC<Props> = memo(
             <RecipeCommandItem
               key={index}
               action={action}
-              onClick={onClick}
+              onClick={onClick ? () => onClick(index) : undefined} // onClickが存在する場合のみ渡す
               commonData={commonData}
             />
           );

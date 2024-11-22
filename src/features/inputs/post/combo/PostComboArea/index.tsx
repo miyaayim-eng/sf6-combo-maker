@@ -75,11 +75,6 @@ export const PostComboArea: FC<Props> = memo(
     return (
       <div className={styles.container}>
         {commonData && recipeCombo && recipeCombo.length > 0 && (
-          // <PostComboList
-          //   commonData={commonData}
-          //   comboList={recipeCombo}
-          //   onClickDeleteCombo={onClickDeleteCombo}
-          // />
           <div className={styles.combo}>
             <RecipeCommandList
               commonData={commonData}

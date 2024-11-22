@@ -35,7 +35,7 @@ export const BackButton: FC<BackButtonProps> = ({ fallbackPath = "/" }) => {
   const buttonText =
     previousUrl && new URL(previousUrl).origin === new URL(currentUrl).origin
       ? "前に戻る"
-      : "一覧へもどる";
+      : "トップページへもどる";
 
   return <ActionButton onClick={onClickGoBack}>{buttonText}</ActionButton>;
 };

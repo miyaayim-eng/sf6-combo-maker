@@ -16,11 +16,17 @@ export const RecipeInfo: FC<Props> = memo(({ recipe }) => {
       {/* <dt className={styles.title}>作成者</dt>
       <dd className={styles.desc}>{recipe.user_id}</dd> */}
       <dt className={styles.title}>ダメージ量</dt>
-      <dd className={styles.desc}>{recipe.total_damage || "-"}</dd>
+      <dd className={styles.desc}>
+        {recipe.total_damage !== null ? recipe.total_damage : "-"}
+      </dd>
       <dt className={styles.title}>OD消費量</dt>
-      <dd className={styles.desc}>{recipe.overdrive || "-"}</dd>
+      <dd className={styles.desc}>
+        {recipe.overdrive !== null ? recipe.overdrive : "-"}
+      </dd>
       <dt className={styles.title}>SA消費量</dt>
-      <dd className={styles.desc}>{recipe.super_arts || "-"}</dd>
+      <dd className={styles.desc}>
+        {recipe.super_arts !== null ? recipe.super_arts : "-"}
+      </dd>
       <dt className={styles.title}>始動位置</dt>
       <dd className={styles.desc}>{recipe.position || "-"}</dd>
     </dl>
